@@ -1,11 +1,10 @@
 # Code related to the paper "A neural mechanism for learning from delayed postingestive feedback"
-*** THIS REPO IS STILL UNDER CONSTRUCTION ***
 
 
 This repository contains:
-- Code to run the brainwide cell detection pipeline (designed for Princeton computing clusters)
-- Code to fit generalized linear mixed models (GLMMs) to the data
 - Code to generate the figures in the paper "A neural mechanism for learning from delayed postingestive feedback"
+- Code to fit generalized linear mixed models (GLMMs) to the data in the paper
+- Code to run the brainwide cell detection pipeline (designed for Princeton computing clusters)
 
 
 The cell detection pipeline incorporates a number of existing resources:
@@ -14,8 +13,6 @@ The cell detection pipeline incorporates a number of existing resources:
 - BrainPipe (https://github.com/PrincetonUniversity/BrainPipe)
 - Elastix (https://github.com/SuperElastix/elastix)
 - Pystripe (https://github.com/chunglabmit/pystripe)
-- Neuroglancer (https://github.com/google/neuroglancer)
-- Cloudvolume (https://github.com/seung-lab/cloud-volume)
 - Allen Mouse Brain Common Coordinate Framework (https://atlas.brain-map.org)
 
 

@@ -5,8 +5,7 @@ library("glmmTMB")
 library("marginaleffects")
 library("stringr")
 
-n <- str_pad(0, 4, pad = 0)
-inpath <- paste("GLMM inputs/Fos-GLMMM/", n, "/", sep = "")
+inpath <- "GLMMs/Fos-GLMMs/"
 flavor <- read.table(paste(inpath, "flavor.csv", sep = ""), sep = ",", col.names = "flavor")
 phase <- read.table(paste(inpath, "phase.csv", sep = ""), sep = ",", col.names = "phase")
 batch <- read.table(paste(inpath, "batch.csv", sep = ""), sep = ",", col.names = "batch")
@@ -94,7 +93,7 @@ for (i in 1:201) {
 }
 
 ##### Equation 5 #####
-DF <- read.table(paste(inpath, "GLMM inputs/Fos-GLMMM/LS-hM3D.csv", sep = ""), sep = ",", header=TRUE)
+DF <- read.table(paste(inpath, "LS-hM3D.csv", sep = ""), sep = ",", header=TRUE)
 glmm_LS <- glmmTMB(LS.Fos ~ Phase + Sex + (1 | Batch.code) + offset(log(Total.Fos)), data = DF, family = "nbinom2")
 summary(glmm_LS)
 glmm_CEA <- glmmTMB(CEA.Fos ~ Phase + Sex + (1 | Batch.code) + offset(log(Total.Fos)), data = DF, family = "nbinom2")

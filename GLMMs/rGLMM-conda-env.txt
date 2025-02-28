@@ -1,10 +1,6 @@
-module load anacondapy/2020.11
+module load anacondapy
 conda create -n rGLMM r-base
 conda activate rGLMM
-
-conda install -c conda-forge r-stringr
-# https://anaconda.org/r/r-stringr 
-# https://cran.r-project.org/web/packages/stringr/index.html
 
 conda install -c conda-forge r-glmmtmb
 # https://anaconda.org/conda-forge/r-glmmtmb
@@ -13,3 +9,7 @@ conda install -c conda-forge r-glmmtmb
 conda install -c conda-forge r-marginaleffects
 # https://anaconda.org/conda-forge/r-marginaleffects
 # https://cran.r-project.org/web/packages/marginaleffects/index.html
+
+conda install -c conda-forge r-stringr
+# https://anaconda.org/r/r-stringr 
+# https://cran.r-project.org/web/packages/stringr/index.html
