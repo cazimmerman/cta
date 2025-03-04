@@ -14,7 +14,7 @@ totalcounts <- read.table(paste(inpath, "totalcounts.csv", sep = ""), sep = ",",
 pbcounts <- read.table(paste(inpath, "pbcounts.csv", sep = ""), sep = ",", col.names = "pbcounts")
 weights <- read.table(paste(inpath, "weights.csv", sep = ""), sep = ",", col.names = "weights")
 
-for (i in 1:221) {
+for (i in 1:201) {
 
     cat(paste("Modeling brain region #", i, sep = ""), "\n")
     counts <- read.table(paste(inpath, "counts_region_", str_pad(as.character(i), 4, pad = "2"), ".csv", sep = ""), sep = ",", col.names = "counts")
