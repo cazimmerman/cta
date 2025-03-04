@@ -9,7 +9,7 @@ sgtitle('Figure 5d','FontWeight','bold')
 lims = [-2 5];
 for j = 1:4
     subplot(1,4,j)
-    load([data_path,'\Photometry\pka-photometry-day',num2str(j-1),'.mat'],'data')
+    load([data_path,'/Photometry/pka-photometry-day',num2str(j-1),'.mat'],'data')
     N = length(data.raw.port);
     hold on
     axis square
@@ -44,11 +44,11 @@ figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 5e','FontWeight','bold')
 
 cmap = flipud(cbrewer('div','RdBu',1000,'spline')); cmap(cmap<0) = 0;
-load([data_path,'\Photometry\pka-photometry-day1.mat'],'data')
+load([data_path,'/Photometry/pka-photometry-day1.mat'],'data')
 [~,idx]=sort(mean(data.psth.PortA(:,1501:2500),2));
 lims = [-2 5];
 for j = 1:4
-    load([data_path,'\Photometry\pka-photometry-day',num2str(j-1),'.mat'],'data')
+    load([data_path,'/Photometry/pka-photometry-day',num2str(j-1),'.mat'],'data')
     
     subplot(2,4,j)
     hold on
@@ -86,7 +86,7 @@ sgtitle('Figure 5f','FontWeight','bold')
 cmap = flipud(cbrewer('div','RdBu',1000,'spline')); cmap(cmap<0) = 0;
 PortA = []; PortB = [];
 for j = 1:4
-    load([data_path,'\Photometry\pka-photometry-day',num2str(j-1),'.mat'],'data')
+    load([data_path,'/Photometry/pka-photometry-day',num2str(j-1),'.mat'],'data')
     PortA(j,:) = mean(data.psth.PortA(:,1501:2500),2);
     PortB(j,:) = mean(data.psth.PortB(:,1501:2500),2);
 end
@@ -109,7 +109,7 @@ ylabel('PKA activity (σ)')
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
-T = readtable([data_path,'\GLMMs\PKA-photometry-GLMM-output.csv']);
+T = readtable([data_path,'/GLMMs/PKA-photometry-GLMM-output.csv']);
 p = multicmp(T{4,2:5},'up',0.05);
 StatsTbl = table({'5f'},{'Day 0: Port A vs. Port B'},{'GLMM marginal effect'},{'4 days'},{[size(PortA,2)]},-T{3,2},p(1), ...
     'VariableNames',{'Figure panel','Group','Statistical test','Multiple comparisons','Sample size','Test statistic','P-value'});
@@ -122,8 +122,8 @@ figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 5g','FontWeight','bold')
 idx_amygdala = [80 81 82];
 
-load([data_path,'\Fos imaging\modified-atlas\allen_ccfv3_modified_cz.mat'],'atlas','RegionLibrary')
-load([data_path,'\Photometry\pka-photometry-day1.mat'],'data')
+load([data_path,'/Fos imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas','RegionLibrary')
+load([data_path,'/Photometry/pka-photometry-day1.mat'],'data')
 PortA = mean(data.psth.PortA(:,1501:2500),2);
 PortB = mean(data.psth.PortB(:,1501:2500),2);
 data.raw.fiber_location(data.raw.fiber_location==0)=nan;

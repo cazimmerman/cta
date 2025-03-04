@@ -5,7 +5,7 @@ disp('Generating panels for Extended Data Figure 8...')
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 8a','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP stim CFA\cgrp-stim-conditioning-behavior.mat'],'data')
+load([data_path,'/Neuropixels/CGRP stim CFA/cgrp-stim-conditioning-behavior.mat'],'data')
 
 axis square
 hold on
@@ -22,7 +22,7 @@ hold off
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 8b','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP stim CFA\cgrp-stim-conditioning-summary.mat'],'data')
+load([data_path,'/Neuropixels/CGRP stim CFA/cgrp-stim-conditioning-summary.mat'],'data')
 
 subplot(1,3,1)
 axis square

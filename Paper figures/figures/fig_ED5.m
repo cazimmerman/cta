@@ -3,13 +3,13 @@ function fig_ED5(data_path)
 disp('Generating panels for Extended Data Figure 5...')
 %% Fig ED5b
 
-openfig([data_path,'\Neuropixels\CGRP stim acute\cgrp-stim-acute-trajectories.fig']);
+openfig([data_path,'/Neuropixels/CGRP stim acute/cgrp-stim-acute-trajectories.fig']);
 set(gcf,'Position', get(0, 'Screensize'))
 %% Fig ED5c
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 5c','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP stim acute\cgrp-stim-acute-summary.mat'],'data')
+load([data_path,'/Neuropixels/CGRP stim acute/cgrp-stim-acute-summary.mat'],'data')
 
 counter = 1;
 binedges = -(60*5):0.01:(60*10);
@@ -125,7 +125,7 @@ hold off
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 5e','FontWeight','bold')
 
-load([data_path,'\Neuropixels\CGRP stim acute\allen_ccfv3_modified_cz_v0.mat'],'atlas','RegionLibrary')
+load([data_path,'/Neuropixels/CGRP stim acute/allen_ccfv3_modified_cz_v0.mat'],'atlas','RegionLibrary')
 amygdala_regions = find(contains(RegionLibrary.reduced.region(1:200),'amyg'));
 cmap_HSV = hsv(length(amygdala_regions));
 cmap_HSV = cmap_HSV*.75;

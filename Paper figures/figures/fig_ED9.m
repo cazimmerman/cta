@@ -3,13 +3,13 @@ function fig_ED9(data_path)
 disp('Generating panels for Extended Data Figure 9...')
 %% Fig ED9a
 
-openfig([data_path,'\Neuropixels\CGRP-CEA stim CFA\cgrp-cea-stim-trajectories.fig']);
+openfig([data_path,'/Neuropixels/CGRP-CEA stim CFA/cgrp-cea-stim-trajectories.fig']);
 set(gcf,'Position', get(0, 'Screensize'))
 %% Fig ED9b
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 9b','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP-CEA stim CFA\cgrp-cea-stim-conditioning-summary.mat'],'data')
+load([data_path,'/Neuropixels/CGRP-CEA stim CFA/cgrp-cea-stim-conditioning-summary.mat'],'data')
 
 idx = find(data.stats.significant & data.stats.preference>0);
 [~,idx2] = sort(data.stats.response.novel(idx),'descend'); idx = idx(idx2);
@@ -57,7 +57,7 @@ hold off
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 9c','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP-CEA stim CFA\cgrp-cea-stim-conditioning-summary.mat'],'data')
+load([data_path,'/Neuropixels/CGRP-CEA stim CFA/cgrp-cea-stim-conditioning-summary.mat'],'data')
 
 subplot(1,2,1)
 axis square
@@ -115,7 +115,7 @@ StatsTbl(end+1,:) = table({'ED 9c'},{'Water-pref vs. Non-selective'},{'Wilcoxon 
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 9d','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP-CEA stim CFA\cgrp-cea-stim-conditioning-summary.mat'],'data')
+load([data_path,'/Neuropixels/CGRP-CEA stim CFA/cgrp-cea-stim-conditioning-summary.mat'],'data')
 
 idx = find(data.stats.significant & data.stats.preference>0);
 [~,idx2] = sort(data.stats.response.novel(idx),'descend'); idx = idx(idx2);
@@ -188,7 +188,7 @@ StatsTbl(end+1,:) = table({'ED 9d'},{'Water-pref vs. Non-selective'},{'Wilcoxon 
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 9e','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP-CEA stim CFA\cgrp-cea-stim-conditioning-summary.mat'],'data')
+load([data_path,'/Neuropixels/CGRP-CEA stim CFA/cgrp-cea-stim-conditioning-summary.mat'],'data')
 
 cmap = struct;
 idx1 = find(data.stats.significant & data.stats.preference>0);
@@ -253,8 +253,8 @@ hold off
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 9g','FontWeight','bold')
 
-Control = load([data_path,'\Neuropixels\LiCl CFA\licl-control-retrieval-behavior.mat'],'data');
-taCasp3 = load([data_path,'\Neuropixels\LiCl CFA\licl-tacasp3-retrieval-behavior.mat'],'data');
+Control = load([data_path,'/Neuropixels/LiCl CFA/licl-control-retrieval-behavior.mat'],'data');
+taCasp3 = load([data_path,'/Neuropixels/LiCl CFA/licl-tacasp3-retrieval-behavior.mat'],'data');
 
 axis square
 hold on
@@ -274,7 +274,7 @@ StatsTbl(end+1,:) = table({'ED 9g'},{'taCasp3 vs. Control'},{'Wilcoxon rank-sum'
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 9i','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP stim + LiCl\cgrp-stim-licl-summary.mat'],'data')
+load([data_path,'/Neuropixels/CGRP stim + LiCl/cgrp-stim-licl-summary.mat'],'data')
 
 cmap = flipud(cbrewer('div','RdBu',1000,'spline')); cmap(cmap<0) = 0;
 
@@ -302,7 +302,7 @@ hold off
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 9j','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP stim + LiCl\cgrp-stim-licl-summary.mat'],'data')
+load([data_path,'/Neuropixels/CGRP stim + LiCl/cgrp-stim-licl-summary.mat'],'data')
 
 subplot(1,2,1)
 axis square

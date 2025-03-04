@@ -5,12 +5,12 @@ disp('Generating panels for Extended Data Figure 1...')
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 1a','FontWeight','bold')
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
 
 subplot(1,2,1)
 counts_norm = [data.GLMMinput.counts./data.GLMMinput.offset./data.regions.size']*100;
 idx_nov = find([data.GLMMoutput.Eq2.flavor.pvalues_corrected(:,1)<=0.05].*[data.GLMMoutput.Eq2.flavor.estimates(:,1)>0]);
-T = readtable([data_path,'\source data\Fig-1e.csv']);
+T = readtable([data_path,'/source data/Fig-1e.csv']);
 hold on
 axis square
 for j = 1:length(idx_nov)
@@ -49,7 +49,7 @@ for i = 2:length(idx_nov)
 end
 
 subplot(1,2,2)
-load([data_path,'\Fos imaging\modified-atlas\allen_ccfv3_modified_cz.mat'],'atlas','RegionLibrary')
+load([data_path,'/Fos imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas','RegionLibrary')
 hold on
 for i = 1:length(idx_nov)
     t = atlas==(RegionLibrary.reduced.index(idx_nov(i))+1);
@@ -75,12 +75,12 @@ hold off
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 1b','FontWeight','bold')
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
 
 subplot(1,2,1)
 counts_norm = [data.GLMMinput.counts./data.GLMMinput.offset./data.regions.size']*100;
 idx_fam = find([data.GLMMoutput.Eq2.flavor.pvalues_corrected(:,1)<=0.05].*[data.GLMMoutput.Eq2.flavor.estimates(:,1)<0]);
-T = readtable([data_path,'\source data\Fig-1e.csv']);
+T = readtable([data_path,'/source data/Fig-1e.csv']);
 hold on
 axis square
 for j = 1:length(idx_fam)
@@ -117,7 +117,7 @@ for i = 1:length(idx_fam)
 end
 
 subplot(1,2,2)
-load([data_path,'\Fos imaging\modified-atlas\allen_ccfv3_modified_cz.mat'],'atlas','RegionLibrary')
+load([data_path,'/Fos imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas','RegionLibrary')
 hold on
 for i = 1:length(idx_fam)
     t = atlas==(RegionLibrary.reduced.index(idx_fam(i))+1);
@@ -144,19 +144,19 @@ hold off
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 1c','FontWeight','bold')
 
-fname = '\Fos imaging\kernel-density-estimates\kde-consumption-novel.npy';
+fname = '/Fos imaging/kernel-density-estimates/kde-consumption-novel.npy';
 KDE.Consume.Novel = readNPY([data_path,fname]);
-fname = '\Fos imaging\kernel-density-estimates\kde-consumption-familiar.npy';
+fname = '/Fos imaging/kernel-density-estimates/kde-consumption-familiar.npy';
 KDE.Consume.Familiar = readNPY([data_path,fname]);
-fname = '\Fos imaging\kernel-density-estimates\kde-malaise-novel.npy';
+fname = '/Fos imaging/kernel-density-estimates/kde-malaise-novel.npy';
 KDE.Malaise.Novel = readNPY([data_path,fname]);
-fname = '\Fos imaging\kernel-density-estimates\kde-malaise-familiar.npy';
+fname = '/Fos imaging/kernel-density-estimates/kde-malaise-familiar.npy';
 KDE.Malaise.Familiar = readNPY([data_path,fname]);
-fname = '\Fos imaging\kernel-density-estimates\kde-retrieval-novel.npy';
+fname = '/Fos imaging/kernel-density-estimates/kde-retrieval-novel.npy';
 KDE.Retrieval.Novel = readNPY([data_path,fname]);
-fname = '\Fos imaging\kernel-density-estimates\kde-retrieval-familiar.npy';
+fname = '/Fos imaging/kernel-density-estimates/kde-retrieval-familiar.npy';
 KDE.Retrieval.Familiar = readNPY([data_path,fname]);
-load([data_path,'\Fos imaging\modified-atlas\allen_ccfv3_modified_cz.mat'],'atlas','RegionLibrary')
+load([data_path,'/Fos imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas','RegionLibrary')
 atlasmask  = atlas>=1028 | atlas<=1;
 KDE.Consume.Novel(atlasmask) = NaN;
 KDE.Consume.Familiar(atlasmask) = NaN;

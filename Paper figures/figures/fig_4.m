@@ -5,7 +5,7 @@ disp('Generating panels for Figure 4...')
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 4b','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP stim CFA\cgrp-stim-retrieval-summary.mat'],'data')
+load([data_path,'/Neuropixels/CGRP stim CFA/cgrp-stim-retrieval-summary.mat'],'data')
 
 idx = find(data.stats.significant & data.stats.preference>0);
 [~,idx2] = sort(data.stats.response.cgrp_period(idx),'descend'); idx = idx(idx2);
@@ -73,7 +73,7 @@ hold off
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 4c','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP stim CFA\cgrp-stim-retrieval-summary.mat'],'data')
+load([data_path,'/Neuropixels/CGRP stim CFA/cgrp-stim-retrieval-summary.mat'],'data')
 
 subplot(2,2,1)
 hold on
@@ -165,7 +165,7 @@ hold off
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 4d','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP stim CFA\cgrp-stim-retrieval-summary.mat'],'data')
+load([data_path,'/Neuropixels/CGRP stim CFA/cgrp-stim-retrieval-summary.mat'],'data')
 
 idx = find(data.stats.significant & data.stats.preference>0);
 A = data.stats.response.cgrp_period(idx);
@@ -346,7 +346,7 @@ StatsTbl(end+1,:) = table({'4d, right'},{'CGRP vs. ΔSelectivity'},{'Pearson cor
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 4e','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP-CEA stim CFA\cgrp-cea-stim-retrieval-summary.mat'],'data')
+load([data_path,'/Neuropixels/CGRP-CEA stim CFA/cgrp-cea-stim-retrieval-summary.mat'],'data')
 
 idx = find(data.stats.significant & data.stats.preference>0);
 A = data.stats.response.cgrp_period(idx);
@@ -410,7 +410,7 @@ StatsTbl(end+1,:) = table({'4e'},{'CGRP vs. ΔSelectivity'},{'Pearson correlatio
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 4f','FontWeight','bold')
-load([data_path,'\Neuropixels\Familiarization\familiarization-summary.mat'],'data')
+load([data_path,'/Neuropixels/Familiarization/familiarization-summary.mat'],'data')
 
 subplot(1,2,1)
 hold on

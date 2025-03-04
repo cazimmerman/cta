@@ -5,7 +5,7 @@ disp('Generating panels for Extended Data Figure 10...')
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 10a','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP stim CFA\cgrp-stim-retrieval-summary.mat'],'data')
+load([data_path,'/Neuropixels/CGRP stim CFA/cgrp-stim-retrieval-summary.mat'],'data')
 
 hold on
 axis square
@@ -35,7 +35,7 @@ StatsTbl = table({'ED 10a'},{'Conditioning vs. Retrieval'},{'Wilcoxon signed-ran
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 10b','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP stim CFA\cgrp-stim-retrieval-summary.mat'],'data')
+load([data_path,'/Neuropixels/CGRP stim CFA/cgrp-stim-retrieval-summary.mat'],'data')
 
 cmap = struct;
 idx1 = find(data.stats.significant & data.stats.preference>0);
@@ -136,7 +136,7 @@ set(ax2,'xlim',x,'ylim',y)
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 10c','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP-CEA stim CFA\cgrp-cea-stim-retrieval-summary.mat'],'data')
+load([data_path,'/Neuropixels/CGRP-CEA stim CFA/cgrp-cea-stim-retrieval-summary.mat'],'data')
 
 idx = find(data.stats.significant & data.stats.preference>0);
 [~,idx2] = sort(data.stats.response.cgrp_period(idx),'descend'); idx = idx(idx2);
@@ -204,7 +204,7 @@ hold off
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 10d','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP-CEA stim CFA\cgrp-cea-stim-retrieval-summary.mat'],'data')
+load([data_path,'/Neuropixels/CGRP-CEA stim CFA/cgrp-cea-stim-retrieval-summary.mat'],'data')
 
 hold on
 axis square
@@ -233,7 +233,7 @@ StatsTbl(end+1,:) = table({'ED 10d'},{'Conditioning vs. Retrieval'},{'Wilcoxon s
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 10e','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP-CEA stim CFA\cgrp-cea-stim-retrieval-summary.mat'],'data')
+load([data_path,'/Neuropixels/CGRP-CEA stim CFA/cgrp-cea-stim-retrieval-summary.mat'],'data')
 
 subplot(1,3,1)
 hold on
@@ -306,7 +306,7 @@ hold off
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 10f','FontWeight','bold')
-load([data_path,'\Neuropixels\LiCl CFA\licl-control-retrieval-summary.mat'],'data')
+load([data_path,'/Neuropixels/LiCl CFA/licl-control-retrieval-summary.mat'],'data')
 
 subplot(1,2,1)
 hold on
@@ -349,7 +349,7 @@ StatsTbl(end+1,:) = table({'ED 10f'},{'Conditioning vs. Retrieval'},{'Wilcoxon s
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 10g','FontWeight','bold')
-load([data_path,'\Neuropixels\LiCl CFA\licl-tacasp3-retrieval-summary.mat'],'data')
+load([data_path,'/Neuropixels/LiCl CFA/licl-tacasp3-retrieval-summary.mat'],'data')
 
 subplot(1,2,1)
 hold on
@@ -392,7 +392,7 @@ StatsTbl(end+1,:) = table({'ED 10g'},{'Conditioning vs. Retrieval'},{'Wilcoxon s
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 10h','FontWeight','bold')
-load([data_path,'\Neuropixels\Familiarization\familiarization-summary.mat'],'data')
+load([data_path,'/Neuropixels/Familiarization/familiarization-summary.mat'],'data')
 
 idx = find(data.stats.significant & data.stats.preference>0);
 [~,idx2] = sort(data.stats.response.novel(idx),'descend'); idx = idx(idx2);
@@ -448,7 +448,7 @@ hold off
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 10i','FontWeight','bold')
-load([data_path,'\Neuropixels\Familiarization\familiarization-summary.mat'],'data')
+load([data_path,'/Neuropixels/Familiarization/familiarization-summary.mat'],'data')
 
 hold on
 axis square
@@ -477,7 +477,7 @@ StatsTbl(end+1,:) = table({'ED 10i'},{'Novel vs. Familiar'},{'Wilcoxon signed-ra
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 10j','FontWeight','bold')
-load([data_path,'\Neuropixels\Familiarization\familiarization-summary.mat'],'data')
+load([data_path,'/Neuropixels/Familiarization/familiarization-summary.mat'],'data')
 
 subplot(1,2,1)
 hold on
@@ -524,7 +524,7 @@ StatsTbl(end+1,:) = table({'ED 10j'},{'Novel vs. Familiar'},{'Wilcoxon signed-ra
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 10k','FontWeight','bold')
-load([data_path,'\Neuropixels\Familiarization\familiarization-summary.mat'],'data')
+load([data_path,'/Neuropixels/Familiarization/familiarization-summary.mat'],'data')
 
 cmap = struct;
 idx1 = find(data.stats.significant & data.stats.preference>0);

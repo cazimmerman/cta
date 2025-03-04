@@ -5,7 +5,7 @@ disp('Generating panels for Extended Data Figure 4...')
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 4a','FontWeight','bold')
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data');
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data');
 
 counts_norm = [data.GLMMinput.counts./data.GLMMinput.offset./data.regions.size']*100;
 significant = find(data.GLMMoutput.Eq2.modelstats.significant);
@@ -80,7 +80,7 @@ hold off
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 4b','FontWeight','bold')
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data');
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data');
 
 counts_norm = [data.GLMMinput.counts./data.GLMMinput.offset./data.regions.size']*100;
 significant = find(data.GLMMoutput.Eq2.modelstats.significant);
@@ -146,7 +146,7 @@ StatsTbl(end+1,:) = table({'ED 4b'},{'Retrieval'},{'Wilcoxon signed-rank'},{'3 t
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 4c','FontWeight','bold')
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data');
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data');
 
 idx = cluster(tree,'maxclust',10);
 idx = idx(outperm);
@@ -214,8 +214,8 @@ StatsTbl(end+1,:) = table({'ED 4c'},{'Amygdala cluster vs. Other clusters'},{'Pe
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 4d','FontWeight','bold')
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data');
-T1 = readtable([data_path,'\Fos imaging\region_info.csv']);
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data');
+T1 = readtable([data_path,'/Fos imaging/region_info.csv']);
 
 counts_norm_CEA = [T1{find(cellfun(@(x) isequal(x,'CentralAmygdalarNucleus'),T1.region)),4:end}./T1{1,4:end}./1.987]'*100;
 counts_norm = [data.GLMMinput.counts./data.GLMMinput.offset./data.regions.size']*100;

@@ -5,7 +5,7 @@ disp('Generating panels for Extended Data Figure 2...')
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 2b','FontWeight','bold')
-T = readtable([data_path,'\source data\Fig-ED2b.csv']);
+T = readtable([data_path,'/source data/Fig-ED2b.csv']);
 
 hold on
 axis square
@@ -35,8 +35,8 @@ StatsTbl = table({'ED 2b'},{'hM3D vs. YFP'},{'Wilcoxon rank-sum'},{'N/A'},{[leng
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 2d','FontWeight','bold')
-T1 = readtable([data_path,'\Fos imaging\region_info.csv']);
-T2 = readtable([data_path,'\Fos imaging\sample_info.csv']);
+T1 = readtable([data_path,'/Fos imaging/region_info.csv']);
+T2 = readtable([data_path,'/Fos imaging/sample_info.csv']);
 
 axis square
 hold on
@@ -60,14 +60,14 @@ ylabel('LS Fos (% per mm^3)'); ylim([0 5]); yticks(0:2.5:5);
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
 StatsTbl(end+1,:) = table({'ED 2d'},{'hM3D vs. YFP'},{'GLMM coefficient estimate'},{'N/A'},{[12 12]},data.GLMMoutput.LS.Eq5.coefficients.Zstat(2),data.GLMMoutput.LS.Eq5.coefficients.pvalues_raw(2));
 %% Fig ED2e
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 2e','FontWeight','bold')
-T1 = readtable([data_path,'\Fos imaging\region_info.csv']);
-T2 = readtable([data_path,'\Fos imaging\sample_info.csv']);
+T1 = readtable([data_path,'/Fos imaging/region_info.csv']);
+T2 = readtable([data_path,'/Fos imaging/sample_info.csv']);
 
 axis square
 hold on
@@ -91,19 +91,19 @@ ylabel('CEA Fos (% per mm^3)'); ylim([0 .5]); yticks(0:.25:.5);
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
 StatsTbl(end+1,:) = table({'ED 2e'},{'hM3D vs. YFP'},{'GLMM coefficient estimate'},{'N/A'},{[12 12]},data.GLMMoutput.CEA.Eq5.coefficients.Zstat(2),data.GLMMoutput.CEA.Eq5.coefficients.pvalues_raw(2));
 %% Fig ED2f
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 2f','FontWeight','bold')
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
 
 hold on
 axis square
 counts_norm = [data.GLMMinput.counts./data.GLMMinput.offset./data.regions.size']*100;
 
-T = readtable([data_path,'\source data\Fig-1e.csv']);
+T = readtable([data_path,'/source data/Fig-1e.csv']);
 regions = struct;
 regions.significant = find(data.GLMMoutput.Eq2.modelstats.significant);
 regions.septum = find(contains(data.regions.name,'ept'));
@@ -195,12 +195,12 @@ StatsTbl(end+1,:) = table({'ED 2f'},{'Septal complex vs. Other regions'},{'One-w
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 2g','FontWeight','bold')
 
-fname = '\Fos imaging\kernel-density-estimates\kde-malaise-LS-YFP.npy';
+fname = '/Fos imaging/kernel-density-estimates/kde-malaise-LS-YFP.npy';
 KDE.YFP = readNPY([data_path,fname]);
-fname = '\Fos imaging\kernel-density-estimates\kde-malaise-LS-hM3D.npy';
+fname = '/Fos imaging/kernel-density-estimates/kde-malaise-LS-hM3D.npy';
 KDE.hM3D = readNPY([data_path,fname]);
 
-load([data_path,'\Fos imaging\modified-atlas\allen_ccfv3_modified_cz.mat'],'atlas')
+load([data_path,'/Fos imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas')
 
 atlasmask  = atlas>=1028 | atlas<=1;
 KDE.YFP(atlasmask) = NaN;
@@ -208,8 +208,8 @@ KDE.hM3D(atlasmask) = NaN;
 
 cmap = flipud(cbrewer('div','RdGy',1000,'spline')); cmap(cmap<0) = 0; cmap(cmap>1) = 1;
 
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data'); data_in = data;
-T = readtable([data_path,'\source data\Fig-1e.csv']);
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data'); data_in = data;
+T = readtable([data_path,'/source data/Fig-1e.csv']);
 idx = find(data.GLMMoutput.Eq2.modelstats.significant);
 idx_amygdala = idx(find(T.Cluster==1));
 planes_nov = [210,265,325];

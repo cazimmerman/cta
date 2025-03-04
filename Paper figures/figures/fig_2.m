@@ -5,7 +5,7 @@ disp('Generating panels for Figure 2...')
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 2b','FontWeight','bold')
-load([data_path,'\Photometry\cgrp-photometry-licl.mat'],'data')
+load([data_path,'/Photometry/cgrp-photometry-licl.mat'],'data')
 
 hold on
 axis square
@@ -19,7 +19,7 @@ hold off
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 2d','FontWeight','bold')
-T = readtable([data_path,'\source data\Fig-2d.csv']);
+T = readtable([data_path,'/source data/Fig-2d.csv']);
 
 hold on
 axis square
@@ -47,7 +47,7 @@ StatsTbl = table({'2d'},{'Novel vs. Familiar'},{'Wilcoxon rank-sum'},{'N/A'},{[l
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 2e','FontWeight','bold')
-T = readtable([data_path,'\source data\Fig-2e.csv']);
+T = readtable([data_path,'/source data/Fig-2e.csv']);
 
 hold on
 axis square
@@ -76,7 +76,7 @@ StatsTbl(end+1,:) = table({'2e'},{'ChRmine vs. YFP'},{'Wilcoxon rank-sum'},{'N/A
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 2f','FontWeight','bold')
-T = readtable([data_path,'\source data\Fig-2f.csv']);
+T = readtable([data_path,'/source data/Fig-2f.csv']);
 
 hold on
 axis square
@@ -105,8 +105,8 @@ StatsTbl(end+1,:) = table({'2f'},{'eOPN3 vs. YFP'},{'Wilcoxon rank-sum'},{'N/A'}
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 2h','FontWeight','bold')
-T1 = readtable([data_path,'\Fos imaging\region_info.csv']);
-T2 = readtable([data_path,'\Fos imaging\sample_info.csv']);
+T1 = readtable([data_path,'/Fos imaging/region_info.csv']);
+T2 = readtable([data_path,'/Fos imaging/sample_info.csv']);
 
 axis square
 hold on
@@ -137,7 +137,7 @@ ylabel('CEA Fos (% per mm^3)'); ylim([0 2]); yticks(0:1:2);
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
 N1 = length(find(cellfun(@(x) isequal('CGRP stim',x),T2.Timepoint)&cellfun(@(x) isequal('Novel',x),T2.Novel)));
 N2 = length(find(cellfun(@(x) isequal('CGRP stim',x),T2.Timepoint)&cellfun(@(x) isequal('Familiar',x),T2.Novel)));
 StatsTbl(end+1,:) = table({'2h'},{'Novel vs. Familiar'},{'GLMM marginal effect'},{'N/A'},{[N1 N2]},data.GLMMoutput.CEA.Eq4.flavor.Zstat(2),data.GLMMoutput.CEA.Eq4.flavor.pvalues_raw(2));
@@ -145,9 +145,9 @@ StatsTbl(end+1,:) = table({'2h'},{'Novel vs. Familiar'},{'GLMM marginal effect'}
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 2i','FontWeight','bold')
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
 
-T = readtable([data_path,'\source data\Fig-1e.csv']);
+T = readtable([data_path,'/source data/Fig-1e.csv']);
 idx = find(data.GLMMoutput.Eq2.modelstats.significant);
 amygdala_regions = idx(find(T.Cluster==1))';
 
@@ -230,9 +230,9 @@ StatsTbl(end+1,:) = table({'2i, bottom'},{'Malaise vs. CGRP stim'},{'Pearson cor
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 2j','FontWeight','bold')
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
 
-T = readtable([data_path,'\source data\Fig-1e.csv']);
+T = readtable([data_path,'/source data/Fig-1e.csv']);
 idx = find(data.GLMMoutput.Eq2.modelstats.significant);
 amygdala_regions = idx(find(T.Cluster==1))';
 
@@ -313,12 +313,12 @@ hold off
 StatsTbl(end+1,:) = table({'2j, bottom'},{'Malaise vs. CGRP stim'},{'Pearson correlation'},{'N/A'},{[length(A)]},r,p);
 %% Fig 2k
 
-fname = '\Fos imaging\kernel-density-estimates\kde-cgrp-stim-novel.npy';
+fname = '/Fos imaging/kernel-density-estimates/kde-cgrp-stim-novel.npy';
 KDE.CGRP.Novel = readNPY([data_path,fname]);
-fname = '\Fos imaging\kernel-density-estimates\kde-cgrp-stim-familiar.npy';
+fname = '/Fos imaging/kernel-density-estimates/kde-cgrp-stim-familiar.npy';
 KDE.CGRP.Familiar = readNPY([data_path,fname]);
 
-load([data_path,'\Fos imaging\modified-atlas\allen_ccfv3_modified_cz.mat'],'atlas','RegionLibrary')
+load([data_path,'/Fos imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas','RegionLibrary')
 
 atlasmask  = atlas>=1028 | atlas<=1;
 KDE.CGRP.Novel(atlasmask) = NaN;
@@ -328,8 +328,8 @@ cmap = flipud(cbrewer('div','RdBu',1000,'spline')); cmap(cmap<0) = 0;
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 2k','FontWeight','bold')
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data'); data_in = data;
-T = readtable([data_path,'\source data\Fig-1e.csv']);
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data'); data_in = data;
+T = readtable([data_path,'/source data/Fig-1e.csv']);
 
 idx = find(data.GLMMoutput.Eq2.modelstats.significant);
 idx_amygdala = idx(find(T.Cluster==1));
@@ -396,7 +396,7 @@ end
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 2m','FontWeight','bold')
-T = readtable([data_path,'\source data\Fig-2m.csv']);
+T = readtable([data_path,'/source data/Fig-2m.csv']);
 
 hold on
 axis square
@@ -416,8 +416,8 @@ for j = 1:3
     plot([j j]-.125,[xx(2) xx(4)],'color',[55 136 193]/255,'LineWidth',1)
     plot([j j]-.125,[xx(1) xx(5)],'color',[55 136 193]/255,'LineWidth',1)
 end
-xlim([0.5 3.5]); xticks(1:3); xticklabels({'{\it Sst}','{\it Prkcd}','{\it Calcrl}'});
-ylabel('{\it Fos}^+ CEA cells (%)'); ylim([0 100]); yticks(0:50:100);
+xlim([0.5 3.5]); xticks(1:3); xticklabels({'{/it Sst}','{/it Prkcd}','{/it Calcrl}'});
+ylabel('{/it Fos}^+ CEA cells (%)'); ylim([0 100]); yticks(0:50:100);
 legend([b,a],{'Familiar','Novel'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
@@ -434,7 +434,7 @@ StatsTbl(end+1,:) = table({'2m'},{'Calcrl: Novel vs. Familiar'},{'Wilcoxon rank-
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 2n','FontWeight','bold')
-T = readtable([data_path,'\source data\Fig-2n.csv']);
+T = readtable([data_path,'/source data/Fig-2n.csv']);
 
 hold on
 axis square
@@ -455,8 +455,8 @@ for j = 1:8
     plot([j j]-.125,[xx(2) xx(4)],'color',[55 136 193]/255,'LineWidth',1)
     plot([j j]-.125,[xx(1) xx(5)],'color',[55 136 193]/255,'LineWidth',1)
 end
-xlim([0.5 8.5]); xticks(1:8); xticklabels({'none','{\it Sst}','{\it Prkcd}','{\it Calcrl}','{\it Sst/Prkcd}','{\it Sst/Calcrl}','{\it Prkcd/Calcrl}','all'});
-ylabel('{\it Fos}^+ CEA cells (%)'); ylim([0 50]); yticks(0:25:50);
+xlim([0.5 8.5]); xticks(1:8); xticklabels({'none','{/it Sst}','{/it Prkcd}','{/it Calcrl}','{/it Sst/Prkcd}','{/it Sst/Calcrl}','{/it Prkcd/Calcrl}','all'});
+ylabel('{/it Fos}^+ CEA cells (%)'); ylim([0 50]); yticks(0:25:50);
 legend([b,a],{'Familiar','Novel'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off

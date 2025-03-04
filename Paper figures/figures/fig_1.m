@@ -5,7 +5,7 @@ disp('Generating panels for Figure 1...')
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 1b','FontWeight','bold')
-T = readtable([data_path,'\source data\Fig-1b.csv']);
+T = readtable([data_path,'/source data/Fig-1b.csv']);
 
 subplot(1,2,1)
 hold on
@@ -47,7 +47,7 @@ legend([a,b],{'Saline','LiCl'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
-T = readtable([data_path,'\GLMMs\CFA-behavior-GLMM-output.csv']);
+T = readtable([data_path,'/GLMMs/CFA-behavior-GLMM-output.csv']);
 p = multicmp(T{4,2:4},'up',0.05);
 StatsTbl = table({'1b, top'},{'Day 1: LiCl vs. Saline'},{'GLMM marginal effect'},{'3 days'},{[8 8]},T{3,2},p(1), ...
     'VariableNames',{'Figure panel','Group','Statistical test','Multiple comparisons','Sample size','Test statistic','P-value'});
@@ -61,7 +61,7 @@ StatsTbl(end+1,:) = table({'1b, bottom'},{'Day 3: LiCl vs. Saline'},{'GLMM margi
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 1e','FontWeight','bold')
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
 
 hold on
 axis square
@@ -88,8 +88,8 @@ StatsTbl(end+1,:) = table({'1e'},{'Malaise vs. Retrieval'},{'Kolmogorov-Smirnov'
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 1f','FontWeight','bold')
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data')
-T = readtable([data_path,'\source data\Fig-1e.csv']);
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
+T = readtable([data_path,'/source data/Fig-1e.csv']);
 
 ax1 = subplot(1,2,1);
 cmap = flipud(cbrewer('div','RdBu',1000,'spline')); cmap(cmap<0) = 0;
@@ -134,25 +134,25 @@ ax2.YAxis.FontSize = 6;
 hold off
 %% Fig 1h
 
-if exist([data_path,'\Fos imaging\kernel-density-estimates'],'dir') ~= 7
-    disp('Unzipping file: ...\Fos imaging\kernel-density-estimates.zip')
-    unzip([data_path,'\Fos imaging\kernel-density-estimates.zip'],[data_path,'\Fos imaging\'])
+if exist([data_path,'/Fos imaging/kernel-density-estimates'],'dir') ~= 7
+    disp('Unzipping file: .../Fos imaging/kernel-density-estimates.zip')
+    unzip([data_path,'/Fos imaging/kernel-density-estimates.zip'],[data_path,'/Fos imaging/'])
 end
 
-fname = '\Fos imaging\kernel-density-estimates\kde-consumption-novel.npy';
+fname = '/Fos imaging/kernel-density-estimates/kde-consumption-novel.npy';
 KDE.Consume.Novel = readNPY([data_path,fname]);
-fname = '\Fos imaging\kernel-density-estimates\kde-consumption-familiar.npy';
+fname = '/Fos imaging/kernel-density-estimates/kde-consumption-familiar.npy';
 KDE.Consume.Familiar = readNPY([data_path,fname]);
-fname = '\Fos imaging\kernel-density-estimates\kde-malaise-novel.npy';
+fname = '/Fos imaging/kernel-density-estimates/kde-malaise-novel.npy';
 KDE.Malaise.Novel = readNPY([data_path,fname]);
-fname = '\Fos imaging\kernel-density-estimates\kde-malaise-familiar.npy';
+fname = '/Fos imaging/kernel-density-estimates/kde-malaise-familiar.npy';
 KDE.Malaise.Familiar = readNPY([data_path,fname]);
-fname = '\Fos imaging\kernel-density-estimates\kde-retrieval-novel.npy';
+fname = '/Fos imaging/kernel-density-estimates/kde-retrieval-novel.npy';
 KDE.Retrieval.Novel = readNPY([data_path,fname]);
-fname = '\Fos imaging\kernel-density-estimates\kde-retrieval-familiar.npy';
+fname = '/Fos imaging/kernel-density-estimates/kde-retrieval-familiar.npy';
 KDE.Retrieval.Familiar = readNPY([data_path,fname]);
 
-load([data_path,'\Fos imaging\modified-atlas\allen_ccfv3_modified_cz.mat'],'atlas')
+load([data_path,'/Fos imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas')
 
 atlasmask  = atlas>=1028 | atlas<=1;
 KDE.Consume.Novel(atlasmask) = NaN;
@@ -168,8 +168,8 @@ lims2 = [-0.5 0.5];
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 1h','FontWeight','bold')
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data'); data_in = data;
-T = readtable([data_path,'\source data\Fig-1e.csv']);
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data'); data_in = data;
+T = readtable([data_path,'/source data/Fig-1e.csv']);
 
 idx = find(data.GLMMoutput.Eq2.modelstats.significant);
 idx_amygdala = idx(find(T.Cluster==1));
@@ -354,8 +354,8 @@ end
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 1i','FontWeight','bold')
-T1 = readtable([data_path,'\Fos imaging\region_info.csv']);
-T2 = readtable([data_path,'\Fos imaging\sample_info.csv']);
+T1 = readtable([data_path,'/Fos imaging/region_info.csv']);
+T2 = readtable([data_path,'/Fos imaging/sample_info.csv']);
 
 axis square
 hold on
@@ -384,7 +384,7 @@ legend([b,a],{'Familiar','Novel'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
 StatsTbl(end+1,:) = table({'1i'},{'Consume: Novel vs. Familiar'},{'GLMM marginal effect'},{'3 timepoints'},{[12 12]},data.GLMMoutput.CEA.Eq2.flavor.Zstat(1),data.GLMMoutput.CEA.Eq2.flavor.pvalues_corrected(1));
 StatsTbl(end+1,:) = table({'1i'},{'Malaise: Novel vs. Familiar'},{'GLMM marginal effect'},{'3 timepoints'},{[12 12]},data.GLMMoutput.CEA.Eq2.flavor.Zstat(2),data.GLMMoutput.CEA.Eq2.flavor.pvalues_corrected(2));
 StatsTbl(end+1,:) = table({'1i'},{'Retrieval: Novel vs. Familiar'},{'GLMM marginal effect'},{'3 timepoints'},{[12 12]},data.GLMMoutput.CEA.Eq2.flavor.Zstat(3),data.GLMMoutput.CEA.Eq2.flavor.pvalues_corrected(3));

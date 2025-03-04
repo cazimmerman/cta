@@ -5,7 +5,7 @@ disp('Generating panels for Extended Data Figure 3...')
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 3a','FontWeight','bold')
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
 
 hold on
 axis square
@@ -33,7 +33,7 @@ StatsTbl(end+1,:) = table({'ED 3a'},{'Malaise vs. Retrieval'},{'Kolmogorov-Smirn
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 3b','FontWeight','bold')
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
 
 hold on
 axis square
@@ -60,7 +60,7 @@ StatsTbl(end+1,:) = table({'ED 3b'},{'Malaise vs. Retrieval'},{'Kolmogorov-Smirn
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 3c','FontWeight','bold')
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
 
 hold on
 axis square
@@ -85,9 +85,9 @@ StatsTbl(end+1,:) = table({'ED 3c'},{'Consume vs. Retrieval'},{'Kolmogorov-Smirn
 StatsTbl(end+1,:) = table({'ED 3c'},{'Malaise vs. Retrieval'},{'Kolmogorov-Smirnov'},{'3 pairs of timepoints'},{[length(x.Consume)]},stat(3),p(3));
 %% Fig ED3e-n
 
-load([data_path,'\Fos imaging\modified-atlas\allen_ccfv3_modified_cz.mat'],'atlas')
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data')
-T = readtable([data_path,'\source data\Fig-1e.csv']);
+load([data_path,'/Fos imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas')
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
+T = readtable([data_path,'/source data/Fig-1e.csv']);
 significant = find(data.GLMMoutput.Eq2.modelstats.significant);
 panels = {'e','f','g','h','i','j','k','l','m','n'};
 for i = 1:max(T.Cluster)

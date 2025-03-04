@@ -5,7 +5,7 @@ disp('Generating panels for Extended Data Figure 6...')
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 6b','FontWeight','bold')
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data');
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data');
 
 hold on
 axis square
@@ -29,9 +29,9 @@ hold off
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 6c','FontWeight','bold')
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
 
-T = readtable([data_path,'\source data\Fig-1e.csv']);
+T = readtable([data_path,'/source data/Fig-1e.csv']);
 idx = find(data.GLMMoutput.Eq2.modelstats.significant);
 idx_amygdala = idx(find(T.Cluster==1))';
 idx_other = setdiff(find(data.GLMMoutput.Eq2.modelstats.significant),[find(data.regions.name=='Parabrachial nucleus');idx_amygdala]);
@@ -102,9 +102,9 @@ StatsTbl(end+1,:) = table({'ED 6c, bottom'},{'Malaise vs. CGRP stim'},{'Pearson 
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 6d','FontWeight','bold')
-load([data_path,'\Fos imaging\Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
 
-T = readtable([data_path,'\source data\Fig-1e.csv']);
+T = readtable([data_path,'/source data/Fig-1e.csv']);
 idx = find(data.GLMMoutput.Eq2.modelstats.significant);
 idx_amygdala = idx(find(T.Cluster==1))';
 idx_other = setdiff(find(data.GLMMoutput.Eq2.modelstats.significant),[find(data.regions.name=='Parabrachial nucleus');idx_amygdala]);
@@ -175,11 +175,11 @@ StatsTbl(end+1,:) = table({'ED 6D, bottom'},{'Malaise vs. CGRP stim'},{'Pearson 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 6e','FontWeight','bold')
 
-fname = '\Fos imaging\kernel-density-estimates\kde-cgrp-stim-novel.npy';
+fname = '/Fos imaging/kernel-density-estimates/kde-cgrp-stim-novel.npy';
 KDE.CGRP.Novel = readNPY([data_path,fname]);
-fname = '\Fos imaging\kernel-density-estimates\kde-cgrp-stim-familiar.npy';
+fname = '/Fos imaging/kernel-density-estimates/kde-cgrp-stim-familiar.npy';
 KDE.CGRP.Familiar = readNPY([data_path,fname]);
-load([data_path,'\Fos imaging\modified-atlas\allen_ccfv3_modified_cz.mat'],'atlas','RegionLibrary')
+load([data_path,'/Fos imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas','RegionLibrary')
 atlasmask  = atlas>=1028 | atlas<=1;
 KDE.CGRP.Novel(atlasmask) = NaN;
 KDE.CGRP.Familiar(atlasmask) = NaN;

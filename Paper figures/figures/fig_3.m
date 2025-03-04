@@ -3,13 +3,13 @@ function fig_3(data_path)
 disp('Generating panels for Figure 3...')
 %% Fig 3c
 
-openfig([data_path,'\Neuropixels\CGRP stim CFA\cgrp-stim-trajectories.fig']);
+openfig([data_path,'/Neuropixels/CGRP stim CFA/cgrp-stim-trajectories.fig']);
 set(gcf,'Position', get(0, 'Screensize'))
 %% Fig 3d
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 3d','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP stim CFA\cgrp-stim-conditioning-summary.mat'],'data')
+load([data_path,'/Neuropixels/CGRP stim CFA/cgrp-stim-conditioning-summary.mat'],'data')
 
 idx = find(data.stats.significant & data.stats.preference>0);
 [~,idx2] = sort(data.stats.response.novel(idx),'descend'); idx = idx(idx2);
@@ -57,7 +57,7 @@ hold off
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 3e','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP stim CFA\cgrp-stim-conditioning-summary.mat'],'data')
+load([data_path,'/Neuropixels/CGRP stim CFA/cgrp-stim-conditioning-summary.mat'],'data')
 
 subplot(1,2,1)
 axis square
@@ -115,7 +115,7 @@ StatsTbl(end+1,:) = table({'3e'},{'Water-pref vs. Non-selective'},{'Wilcoxon ran
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 3f','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP stim CFA\cgrp-stim-conditioning-summary.mat'],'data')
+load([data_path,'/Neuropixels/CGRP stim CFA/cgrp-stim-conditioning-summary.mat'],'data')
 
 idx = find(data.stats.significant & data.stats.preference>0);
 [~,idx2] = sort(data.stats.response.novel(idx),'descend'); idx = idx(idx2);
@@ -201,7 +201,7 @@ StatsTbl(end+1,:) = table({'3f'},{'Water-pref vs. Non-selective'},{'Wilcoxon ran
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 3j','FontWeight','bold')
-load([data_path,'\Neuropixels\CGRP stim CFA\cgrp-stim-conditioning-summary.mat'],'data')
+load([data_path,'/Neuropixels/CGRP stim CFA/cgrp-stim-conditioning-summary.mat'],'data')
 
 cmap = struct;
 idx1 = find(data.stats.significant & data.stats.preference>0);
@@ -446,7 +446,7 @@ hold off
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 3n','FontWeight','bold')
-load([data_path,'\Neuropixels\LiCl CFA\licl-control-conditioning-summary.mat'],'data')
+load([data_path,'/Neuropixels/LiCl CFA/licl-control-conditioning-summary.mat'],'data')
 
 subplot(1,2,1)
 axis square
@@ -503,7 +503,7 @@ StatsTbl(end+1,:) = table({'3n'},{'Water-pref vs. Non-selective'},{'Wilcoxon ran
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 3q','FontWeight','bold')
-load([data_path,'\Neuropixels\LiCl CFA\licl-tacasp3-conditioning-summary.mat'],'data')
+load([data_path,'/Neuropixels/LiCl CFA/licl-tacasp3-conditioning-summary.mat'],'data')
 
 subplot(1,2,1)
 axis square
