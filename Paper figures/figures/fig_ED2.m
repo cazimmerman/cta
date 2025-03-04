@@ -185,7 +185,7 @@ i12 = sub2ind(size(gcov), g1, g2);
 gvar = diag(gcov);
 se = sqrt(gvar(g1) + gvar(g2) - 2 * gcov(i12));
 t = mn./se; t = [-t(1) -t(2) t(3)]; % correct directions of comparisons
-[c,~,~,~] = multcompare(stats,0.05,'on','bonferroni','slope','display','off');
+[c,~,~,~] = multcompare(stats,0.05,'off','bonferroni','slope');
 close(gcf)
 StatsTbl(end+1,:) = table({'ED 2f'},{'Amygdala network vs. Septal complex'},{'One-way ANCOVA (slope)'},{'3 pairs of region groups'},{[length(idx1) length(idx2)]},t(3),c(3,end));
 StatsTbl(end+1,:) = table({'ED 2f'},{'Amygdala network vs. Other regions'},{'One-way ANCOVA (slope)'},{'3 pairs of region groups'},{[length(idx1) length(setdiff(regions.significant,[regions.amygdala;regions.septum]))]},t(1),c(1,end));

@@ -1,3 +1,4 @@
+% tested on MATLAB R2021a (Windows) and R2024b (Mac)
 clearvars; close all; clc
 addpath(genpath('figures'))
 addpath(genpath('utils'))
