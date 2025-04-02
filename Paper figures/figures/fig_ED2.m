@@ -24,7 +24,7 @@ plot([-0.125 0.125]+2,[xx(3) xx(3)],'color',[229 45 38]/255,'LineWidth',1)
 plot([1 1]*2,[xx(2) xx(4)],'color',[229 45 38]/255,'LineWidth',1)
 plot([1 1]*2,[xx(1) xx(5)],'color',[229 45 38]/255,'LineWidth',1)
 xlim([0.5 2.5]); xticks(1:2); xticklabels({'YFP','hM3D'});
-ylabel('Flavor preference (%)'); ylim([0 100]); yticks(0:50:100);
+ylabel('Flavour preference (%)'); ylim([0 100]); yticks(0:50:100);
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
@@ -35,8 +35,8 @@ StatsTbl = table({'ED 2b'},{'hM3D vs. YFP'},{'Wilcoxon rank-sum'},{'N/A'},{[leng
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 2d','FontWeight','bold')
-T1 = readtable([data_path,'/Fos imaging/region_info.csv']);
-T2 = readtable([data_path,'/Fos imaging/sample_info.csv']);
+T1 = readtable([data_path,'/FOS imaging/region_info.csv']);
+T2 = readtable([data_path,'/FOS imaging/sample_info.csv']);
 
 axis square
 hold on
@@ -56,18 +56,18 @@ plot([-0.125 0.125]+2,[xx(3) xx(3)],'color',[229 45 38]/255,'LineWidth',1)
 plot([1 1]*2,[xx(2) xx(4)],'color',[229 45 38]/255,'LineWidth',1)
 plot([1 1]*2,[xx(1) xx(5)],'color',[229 45 38]/255,'LineWidth',1)
 xlim([0.5 2.5]); xticks(1:2); xticklabels({'YFP','hM3D'});
-ylabel('LS Fos (% per mm^3)'); ylim([0 5]); yticks(0:2.5:5);
+ylabel('LS FOS (% per mm^3)'); ylim([0 5]); yticks(0:2.5:5);
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
-load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/FOS imaging/FOS-GLMM-statistics.mat'],'data')
 StatsTbl(end+1,:) = table({'ED 2d'},{'hM3D vs. YFP'},{'GLMM coefficient estimate'},{'N/A'},{[12 12]},data.GLMMoutput.LS.Eq5.coefficients.Zstat(2),data.GLMMoutput.LS.Eq5.coefficients.pvalues_raw(2));
 %% Fig ED2e
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 2e','FontWeight','bold')
-T1 = readtable([data_path,'/Fos imaging/region_info.csv']);
-T2 = readtable([data_path,'/Fos imaging/sample_info.csv']);
+T1 = readtable([data_path,'/FOS imaging/region_info.csv']);
+T2 = readtable([data_path,'/FOS imaging/sample_info.csv']);
 
 axis square
 hold on
@@ -87,31 +87,31 @@ plot([-0.125 0.125]+2,[xx(3) xx(3)],'color',[229 45 38]/255,'LineWidth',1)
 plot([1 1]*2,[xx(2) xx(4)],'color',[229 45 38]/255,'LineWidth',1)
 plot([1 1]*2,[xx(1) xx(5)],'color',[229 45 38]/255,'LineWidth',1)
 xlim([0.5 2.5]); xticks(1:2); xticklabels({'YFP','hM3D'});
-ylabel('CEA Fos (% per mm^3)'); ylim([0 .5]); yticks(0:.25:.5);
+ylabel('CEA FOS (% per mm^3)'); ylim([0 .5]); yticks(0:.25:.5);
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
-load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/FOS imaging/FOS-GLMM-statistics.mat'],'data')
 StatsTbl(end+1,:) = table({'ED 2e'},{'hM3D vs. YFP'},{'GLMM coefficient estimate'},{'N/A'},{[12 12]},data.GLMMoutput.CEA.Eq5.coefficients.Zstat(2),data.GLMMoutput.CEA.Eq5.coefficients.pvalues_raw(2));
 %% Fig ED2f
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 2f','FontWeight','bold')
-load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/FOS imaging/FOS-GLMM-statistics.mat'],'data')
 
 hold on
 axis square
-counts_norm = [data.GLMMinput.counts./data.GLMMinput.offset./data.regions.size']*100;
+counts_norm = [data.GLMMinput.counts./data.GLMMinput.totalcounts./data.regions.size']*100;
 
 T = readtable([data_path,'/source data/Fig-1e.csv']);
 regions = struct;
 regions.significant = find(data.GLMMoutput.Eq2.modelstats.significant);
 regions.septum = find(contains(data.regions.name,'ept'));
 regions.amygdala = regions.significant(find(T.Cluster==1))';
-YFP = find(cellfun(@(x) isequal('Malaise + LS-YFP',x),data.GLMMinput.phase));
-hM3D = find(cellfun(@(x) isequal('Malaise + LS-hM3D',x),data.GLMMinput.phase));
+YFP = find(cellfun(@(x) isequal('Malaise + LS-YFP',x),data.GLMMinput.timepoint));
+hM3D = find(cellfun(@(x) isequal('Malaise + LS-hM3D',x),data.GLMMinput.timepoint));
 
-idx0 = setdiff(regions.significant,[regions.amygdala;regions.septum]);
+idx0 = setdiff(regions.significant,[regions.amygdala,regions.septum']);
 A = mean(counts_norm(hM3D,idx0));
 B = mean(counts_norm(YFP,idx0));
 a = scatter(A,B,1,'k','filled','MarkerEdgeColor','w');
@@ -157,8 +157,8 @@ c = scatter(mean(counts_norm(hM3D,regions.septum)),mean(counts_norm(YFP,regions.
 
 xlim([0 4]); xticks(0:1:4);
 ylim([0 4]); yticks(0:1:4);
-ylabel('YFP Fos^ (% per mm^3)')
-xlabel('hM3D Fos^ (% per mm^3)')
+ylabel('YFP FOS (% per mm^3)')
+xlabel('hM3D FOS (% per mm^3)')
 legend([b,c,a],{'Amygdala network','Septal complex','Other regions'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
@@ -188,19 +188,19 @@ t = mn./se; t = [-t(1) -t(2) t(3)]; % correct directions of comparisons
 [c,~,~,~] = multcompare(stats,0.05,'off','bonferroni','slope');
 close(gcf)
 StatsTbl(end+1,:) = table({'ED 2f'},{'Amygdala network vs. Septal complex'},{'One-way ANCOVA (slope)'},{'3 pairs of region groups'},{[length(idx1) length(idx2)]},t(3),c(3,end));
-StatsTbl(end+1,:) = table({'ED 2f'},{'Amygdala network vs. Other regions'},{'One-way ANCOVA (slope)'},{'3 pairs of region groups'},{[length(idx1) length(setdiff(regions.significant,[regions.amygdala;regions.septum]))]},t(1),c(1,end));
-StatsTbl(end+1,:) = table({'ED 2f'},{'Septal complex vs. Other regions'},{'One-way ANCOVA (slope)'},{'3 pairs of region groups'},{[length(idx2) length(setdiff(regions.significant,[regions.amygdala;regions.septum]))]},t(2),c(2,end));
+StatsTbl(end+1,:) = table({'ED 2f'},{'Amygdala network vs. Other regions'},{'One-way ANCOVA (slope)'},{'3 pairs of region groups'},{[length(idx1) length(setdiff(regions.significant,[regions.amygdala,regions.septum']))]},t(1),c(1,end));
+StatsTbl(end+1,:) = table({'ED 2f'},{'Septal complex vs. Other regions'},{'One-way ANCOVA (slope)'},{'3 pairs of region groups'},{[length(idx2) length(setdiff(regions.significant,[regions.amygdala,regions.septum']))]},t(2),c(2,end));
 %% Fig ED2g
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 2g','FontWeight','bold')
 
-fname = '/Fos imaging/kernel-density-estimates/kde-malaise-LS-YFP.npy';
+fname = '/FOS imaging/kernel-density-estimates/kde-malaise-LS-YFP.npy';
 KDE.YFP = readNPY([data_path,fname]);
-fname = '/Fos imaging/kernel-density-estimates/kde-malaise-LS-hM3D.npy';
+fname = '/FOS imaging/kernel-density-estimates/kde-malaise-LS-hM3D.npy';
 KDE.hM3D = readNPY([data_path,fname]);
 
-load([data_path,'/Fos imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas')
+load([data_path,'/FOS imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas')
 
 atlasmask  = atlas>=1028 | atlas<=1;
 KDE.YFP(atlasmask) = NaN;
@@ -208,7 +208,7 @@ KDE.hM3D(atlasmask) = NaN;
 
 cmap = flipud(cbrewer('div','RdGy',1000,'spline')); cmap(cmap<0) = 0; cmap(cmap>1) = 1;
 
-load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data'); data_in = data;
+load([data_path,'/FOS imaging/FOS-GLMM-statistics.mat'],'data'); data_in = data;
 T = readtable([data_path,'/source data/Fig-1e.csv']);
 idx = find(data.GLMMoutput.Eq2.modelstats.significant);
 idx_amygdala = idx(find(T.Cluster==1));

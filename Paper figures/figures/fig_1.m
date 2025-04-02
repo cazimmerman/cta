@@ -10,19 +10,19 @@ T = readtable([data_path,'/source data/Fig-1b.csv']);
 subplot(1,2,1)
 hold on
 axis square
-idx = find(cellfun(@(x,y) isequal(x,'Novel').*isequal(y,'Saline'),T.Novel,T.Injection));
+idx = find(cellfun(@(x,y) isequal(x,'Novel').*isequal(y,'Saline'),T.Flavour,T.Injection));
 data = [T.Day1(idx), T.Day2(idx), T.Day3(idx)]*100;
 plot(1:3,data,'color',[.85 .85 .85],'linewidth',1)
 a = plot(1:3,mean(data),'color','k','linewidth',1);
 errorbar(1:3,mean(data),std(data)./sqrt(size(data,1)),'color','k','linestyle','none','capsize',0,'linewidth',1)
-idx = find(cellfun(@(x,y) isequal(x,'Novel').*isequal(y,'LiCl'),T.Novel,T.Injection));
+idx = find(cellfun(@(x,y) isequal(x,'Novel').*isequal(y,'LiCl'),T.Flavour,T.Injection));
 data = [T.Day1(idx), T.Day2(idx), T.Day3(idx)]*100;
 plot(1:3,data,'color',[252 216 213]/255,'linewidth',1)
 b = plot(1:3,mean(data),'color',[229 45 38]/255,'linewidth',1);
 errorbar(1:3,mean(data),std(data)./sqrt(size(data,1)),'color',[229 45 38]/255,'linestyle','none','capsize',0,'linewidth',1)
 xlabel('Retrieval day'); xlim([0.5 3.5]); xticks(1:3);
-ylabel('Flavor preference (%)'); ylim([0 100]); yticks(0:50:100);
-title('Novel flavor')
+ylabel('Flavour preference (%)'); ylim([0 100]); yticks(0:50:100);
+title('Novel flavour')
 legend([a,b],{'Saline','LiCl'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
@@ -30,19 +30,19 @@ hold off
 subplot(1,2,2)
 hold on
 axis square
-idx = find(cellfun(@(x,y) isequal(x,'Familiar').*isequal(y,'Saline'),T.Novel,T.Injection));
+idx = find(cellfun(@(x,y) isequal(x,'Familiar').*isequal(y,'Saline'),T.Flavour,T.Injection));
 data = [T.Day1(idx), T.Day2(idx), T.Day3(idx)]*100;
 plot(1:3,data,'color',[.85 .85 .85],'linewidth',1)
 a = plot(1:3,mean(data),'color','k','linewidth',1);
 errorbar(1:3,mean(data),std(data)./sqrt(size(data,1)),'color','k','linestyle','none','capsize',0,'linewidth',1)
-idx = find(cellfun(@(x,y) isequal(x,'Familiar').*isequal(y,'LiCl'),T.Novel,T.Injection));
+idx = find(cellfun(@(x,y) isequal(x,'Familiar').*isequal(y,'LiCl'),T.Flavour,T.Injection));
 data = [T.Day1(idx), T.Day2(idx), T.Day3(idx)]*100;
 plot(1:3,data,'color',[252 216 213]/255,'linewidth',1)
 b = plot(1:3,mean(data),'color',[229 45 38]/255,'linewidth',1);
 errorbar(1:3,mean(data),std(data)./sqrt(size(data,1)),'color',[229 45 38]/255,'linestyle','none','capsize',0,'linewidth',1)
 xlabel('Retrieval day'); xlim([0.5 3.5]); xticks(1:3);
-ylabel('Flavor preference (%)'); ylim([0 100]); yticks(0:50:100);
-title('Familiar flavor')
+ylabel('Flavour preference (%)'); ylim([0 100]); yticks(0:50:100);
+title('Familiar flavour')
 legend([a,b],{'Saline','LiCl'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
@@ -61,7 +61,7 @@ StatsTbl(end+1,:) = table({'1b, bottom'},{'Day 3: LiCl vs. Saline'},{'GLMM margi
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 1e','FontWeight','bold')
-load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/FOS imaging/FOS-GLMM-statistics.mat'],'data')
 
 hold on
 axis square
@@ -72,7 +72,7 @@ x.Malaise = data.GLMMoutput.Eq2.flavor.Zstat(idx,2);
 x.Retrieval = data.GLMMoutput.Eq2.flavor.Zstat(idx,3);
 violinplot(x);
 xlim([0.5 3.5]); xticks(1:3);
-ylabel('Novel – Familiar ΔFos (Z)'); ylim([-5 5]); yticks(-5:2.5:5);
+ylabel('Novel – Familiar ΔFOS (Z)'); ylim([-5 5]); yticks(-5:2.5:5);
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
@@ -81,14 +81,14 @@ stat = []; p = [];
 [~,p(2),stat(2)] = kstest2(x.Consume,x.Retrieval);
 [~,p(3),stat(3)] = kstest2(x.Malaise,x.Retrieval);
 p = multicmp(p,'up',0.05);
-StatsTbl(end+1,:) = table({'1e'},{'Consume vs. Malaise'},{'Kolmogorov-Smirnov'},{'3 pairs of timepoints'},{[length(x.Consume)]},stat(1),p(1));
-StatsTbl(end+1,:) = table({'1e'},{'Consume vs. Retrieval'},{'Kolmogorov-Smirnov'},{'3 pairs of timepoints'},{[length(x.Consume)]},stat(2),p(2));
-StatsTbl(end+1,:) = table({'1e'},{'Malaise vs. Retrieval'},{'Kolmogorov-Smirnov'},{'3 pairs of timepoints'},{[length(x.Consume)]},stat(3),p(3));
+StatsTbl(end+1,:) = table({'1e'},{'Consume vs. Malaise'},{'Kolmogorov-Smirnov'},{'3 pairs of time points'},{[length(x.Consume)]},stat(1),p(1));
+StatsTbl(end+1,:) = table({'1e'},{'Consume vs. Retrieval'},{'Kolmogorov-Smirnov'},{'3 pairs of time points'},{[length(x.Consume)]},stat(2),p(2));
+StatsTbl(end+1,:) = table({'1e'},{'Malaise vs. Retrieval'},{'Kolmogorov-Smirnov'},{'3 pairs of time points'},{[length(x.Consume)]},stat(3),p(3));
 %% Fig 1f
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 1f','FontWeight','bold')
-load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/FOS imaging/FOS-GLMM-statistics.mat'],'data')
 T = readtable([data_path,'/source data/Fig-1e.csv']);
 
 ax1 = subplot(1,2,1);
@@ -134,25 +134,25 @@ ax2.YAxis.FontSize = 6;
 hold off
 %% Fig 1h
 
-if exist([data_path,'/Fos imaging/kernel-density-estimates'],'dir') ~= 7
-    disp('Unzipping file: .../Fos imaging/kernel-density-estimates.zip')
-    unzip([data_path,'/Fos imaging/kernel-density-estimates.zip'],[data_path,'/Fos imaging/'])
+if exist([data_path,'/FOS imaging/kernel-density-estimates'],'dir') ~= 7
+    disp('Unzipping file: .../FOS imaging/kernel-density-estimates.zip')
+    unzip([data_path,'/FOS imaging/kernel-density-estimates.zip'],[data_path,'/FOS imaging/'])
 end
 
-fname = '/Fos imaging/kernel-density-estimates/kde-consumption-novel.npy';
+fname = '/FOS imaging/kernel-density-estimates/kde-consumption-novel.npy';
 KDE.Consume.Novel = readNPY([data_path,fname]);
-fname = '/Fos imaging/kernel-density-estimates/kde-consumption-familiar.npy';
+fname = '/FOS imaging/kernel-density-estimates/kde-consumption-familiar.npy';
 KDE.Consume.Familiar = readNPY([data_path,fname]);
-fname = '/Fos imaging/kernel-density-estimates/kde-malaise-novel.npy';
+fname = '/FOS imaging/kernel-density-estimates/kde-malaise-novel.npy';
 KDE.Malaise.Novel = readNPY([data_path,fname]);
-fname = '/Fos imaging/kernel-density-estimates/kde-malaise-familiar.npy';
+fname = '/FOS imaging/kernel-density-estimates/kde-malaise-familiar.npy';
 KDE.Malaise.Familiar = readNPY([data_path,fname]);
-fname = '/Fos imaging/kernel-density-estimates/kde-retrieval-novel.npy';
+fname = '/FOS imaging/kernel-density-estimates/kde-retrieval-novel.npy';
 KDE.Retrieval.Novel = readNPY([data_path,fname]);
-fname = '/Fos imaging/kernel-density-estimates/kde-retrieval-familiar.npy';
+fname = '/FOS imaging/kernel-density-estimates/kde-retrieval-familiar.npy';
 KDE.Retrieval.Familiar = readNPY([data_path,fname]);
 
-load([data_path,'/Fos imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas')
+load([data_path,'/FOS imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas')
 
 atlasmask  = atlas>=1028 | atlas<=1;
 KDE.Consume.Novel(atlasmask) = NaN;
@@ -168,7 +168,7 @@ lims2 = [-0.5 0.5];
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 1h','FontWeight','bold')
-load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data'); data_in = data;
+load([data_path,'/FOS imaging/FOS-GLMM-statistics.mat'],'data'); data_in = data;
 T = readtable([data_path,'/source data/Fig-1e.csv']);
 
 idx = find(data.GLMMoutput.Eq2.modelstats.significant);
@@ -354,8 +354,8 @@ end
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Figure 1i','FontWeight','bold')
-T1 = readtable([data_path,'/Fos imaging/region_info.csv']);
-T2 = readtable([data_path,'/Fos imaging/sample_info.csv']);
+T1 = readtable([data_path,'/FOS imaging/region_info.csv']);
+T2 = readtable([data_path,'/FOS imaging/sample_info.csv']);
 
 axis square
 hold on
@@ -379,15 +379,15 @@ for j = 1:length(phaselist)
     plot([j j]-.125,[xx(1) xx(5)],'color',[55 136 193]/255,'LineWidth',1)
 end
 xlim([0.5 3.5]); xticks(1:3); xticklabels({'Consume','Malaise','Retrieval'});
-ylabel('CEA Fos (% per mm^3)'); ylim([0 1]); yticks(0:.25:1);
+ylabel('CEA FOS (% per mm^3)'); ylim([0 1]); yticks(0:.25:1);
 legend([b,a],{'Familiar','Novel'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
-load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
-StatsTbl(end+1,:) = table({'1i'},{'Consume: Novel vs. Familiar'},{'GLMM marginal effect'},{'3 timepoints'},{[12 12]},data.GLMMoutput.CEA.Eq2.flavor.Zstat(1),data.GLMMoutput.CEA.Eq2.flavor.pvalues_corrected(1));
-StatsTbl(end+1,:) = table({'1i'},{'Malaise: Novel vs. Familiar'},{'GLMM marginal effect'},{'3 timepoints'},{[12 12]},data.GLMMoutput.CEA.Eq2.flavor.Zstat(2),data.GLMMoutput.CEA.Eq2.flavor.pvalues_corrected(2));
-StatsTbl(end+1,:) = table({'1i'},{'Retrieval: Novel vs. Familiar'},{'GLMM marginal effect'},{'3 timepoints'},{[12 12]},data.GLMMoutput.CEA.Eq2.flavor.Zstat(3),data.GLMMoutput.CEA.Eq2.flavor.pvalues_corrected(3));
+load([data_path,'/FOS imaging/FOS-GLMM-statistics.mat'],'data')
+StatsTbl(end+1,:) = table({'1i'},{'Consume: Novel vs. Familiar'},{'GLMM marginal effect'},{'3 time points'},{[12 12]},data.GLMMoutput.CEA.Eq2.flavor.Zstat(1),data.GLMMoutput.CEA.Eq2.flavor.pvalues_corrected(1));
+StatsTbl(end+1,:) = table({'1i'},{'Malaise: Novel vs. Familiar'},{'GLMM marginal effect'},{'3 time points'},{[12 12]},data.GLMMoutput.CEA.Eq2.flavor.Zstat(2),data.GLMMoutput.CEA.Eq2.flavor.pvalues_corrected(2));
+StatsTbl(end+1,:) = table({'1i'},{'Retrieval: Novel vs. Familiar'},{'GLMM marginal effect'},{'3 time points'},{[12 12]},data.GLMMoutput.CEA.Eq2.flavor.Zstat(3),data.GLMMoutput.CEA.Eq2.flavor.pvalues_corrected(3));
 
 drawnow
 %% Stats table

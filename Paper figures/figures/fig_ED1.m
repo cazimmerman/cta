@@ -5,16 +5,16 @@ disp('Generating panels for Extended Data Figure 1...')
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 1a','FontWeight','bold')
-load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/FOS imaging/FOS-GLMM-statistics.mat'],'data')
 
 subplot(1,2,1)
-counts_norm = [data.GLMMinput.counts./data.GLMMinput.offset./data.regions.size']*100;
+counts_norm = [data.GLMMinput.counts./data.GLMMinput.totalcounts./data.regions.size']*100;
 idx_nov = find([data.GLMMoutput.Eq2.flavor.pvalues_corrected(:,1)<=0.05].*[data.GLMMoutput.Eq2.flavor.estimates(:,1)>0]);
 T = readtable([data_path,'/source data/Fig-1e.csv']);
 hold on
 axis square
 for j = 1:length(idx_nov)
-    idx = find(cellfun(@(x) isequal('Consumption',x),data.GLMMinput.phase)&cellfun(@(x) isequal('Novel',x),data.GLMMinput.flavor));
+    idx = find(cellfun(@(x) isequal('Consumption',x),data.GLMMinput.timepoint)&cellfun(@(x) isequal('Novel',x),data.GLMMinput.flavor));
     x = counts_norm(idx,idx_nov(j));
     xx = [NaN mean(x)-std(x)./sqrt(length(x)) mean(x) mean(x)+std(x)./sqrt(length(x)) NaN];
     scatter(ones(1,length(x))*j+rand(1,length(x))*.1-.05+.125,x,100,'filled','MarkerFaceColor',[252 216 213]/255,'MarkerEdgeColor','w')
@@ -22,7 +22,7 @@ for j = 1:length(idx_nov)
     plot([j j]+.125,[xx(2) xx(4)],'color',[229 45 38]/255,'LineWidth',1)
     plot([j j]+.125,[xx(1) xx(5)],'color',[229 45 38]/255,'LineWidth',1)
     
-    idx = find(cellfun(@(x) isequal('Consumption',x),data.GLMMinput.phase)&cellfun(@(x) isequal('Familiar',x),data.GLMMinput.flavor));
+    idx = find(cellfun(@(x) isequal('Consumption',x),data.GLMMinput.timepoint)&cellfun(@(x) isequal('Familiar',x),data.GLMMinput.flavor));
     x = counts_norm(idx,idx_nov(j));
     xx = prctile(x,[10 25 50 75 90]);
     xx = [NaN mean(x)-std(x)./sqrt(length(x)) mean(x) mean(x)+std(x)./sqrt(length(x)) NaN];
@@ -37,7 +37,7 @@ xticklabels(TickLabels)
 ylim([0 1])
 yticks(0:.5:1)
 xlim([0.5 length(idx_nov)+.5])
-ylabel('Fos (% per mm^3)')
+ylabel('FOS (% per mm^3)')
 legend([b,a],{'Familiar','Novel'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
@@ -45,11 +45,11 @@ hold off
 StatsTbl = table({'ED 1a'},{[TickLabels{1},': Novel vs. Familiar']},{'GLMM marginal effect'},{'3 timepoints'},{[12 12]},data.GLMMoutput.Eq2.flavor.Zstat(idx_nov(1),1),data.GLMMoutput.Eq2.flavor.pvalues_corrected(idx_nov(1),1), ...
     'VariableNames',{'Figure panel','Group','Statistical test','Multiple comparisons','Sample size','Test statistic','P-value'});
 for i = 2:length(idx_nov)
-    StatsTbl(end+1,:) = table({'ED 1a'},{[TickLabels{i},': Novel vs. Familiar']},{'GLMM marginal effect'},{'3 timepoints'},{[12 12]},data.GLMMoutput.Eq2.flavor.Zstat(idx_nov(i),1),data.GLMMoutput.Eq2.flavor.pvalues_corrected(idx_nov(i),1));
+    StatsTbl(end+1,:) = table({'ED 1a'},{[TickLabels{i},': Novel vs. Familiar']},{'GLMM marginal effect'},{'3 time points'},{[12 12]},data.GLMMoutput.Eq2.flavor.Zstat(idx_nov(i),1),data.GLMMoutput.Eq2.flavor.pvalues_corrected(idx_nov(i),1));
 end
 
 subplot(1,2,2)
-load([data_path,'/Fos imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas','RegionLibrary')
+load([data_path,'/FOS imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas','RegionLibrary')
 hold on
 for i = 1:length(idx_nov)
     t = atlas==(RegionLibrary.reduced.index(idx_nov(i))+1);
@@ -75,16 +75,16 @@ hold off
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 1b','FontWeight','bold')
-load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/FOS imaging/FOS-GLMM-statistics.mat'],'data')
 
 subplot(1,2,1)
-counts_norm = [data.GLMMinput.counts./data.GLMMinput.offset./data.regions.size']*100;
+counts_norm = [data.GLMMinput.counts./data.GLMMinput.totalcounts./data.regions.size']*100;
 idx_fam = find([data.GLMMoutput.Eq2.flavor.pvalues_corrected(:,1)<=0.05].*[data.GLMMoutput.Eq2.flavor.estimates(:,1)<0]);
 T = readtable([data_path,'/source data/Fig-1e.csv']);
 hold on
 axis square
 for j = 1:length(idx_fam)
-    idx = find(cellfun(@(x) isequal('Consumption',x),data.GLMMinput.phase)&cellfun(@(x) isequal('Novel',x),data.GLMMinput.flavor));
+    idx = find(cellfun(@(x) isequal('Consumption',x),data.GLMMinput.timepoint)&cellfun(@(x) isequal('Novel',x),data.GLMMinput.flavor));
     x = counts_norm(idx,idx_fam(j));
     xx = [NaN mean(x)-std(x)./sqrt(length(x)) mean(x) mean(x)+std(x)./sqrt(length(x)) NaN];
     scatter(ones(1,length(x))*j+rand(1,length(x))*.1-.05+.125,x,100,'filled','MarkerFaceColor',[252 216 213]/255,'MarkerEdgeColor','w')
@@ -92,7 +92,7 @@ for j = 1:length(idx_fam)
     plot([j j]+.125,[xx(2) xx(4)],'color',[229 45 38]/255,'LineWidth',1)
     plot([j j]+.125,[xx(1) xx(5)],'color',[229 45 38]/255,'LineWidth',1)
     
-    idx = find(cellfun(@(x) isequal('Consumption',x),data.GLMMinput.phase)&cellfun(@(x) isequal('Familiar',x),data.GLMMinput.flavor));
+    idx = find(cellfun(@(x) isequal('Consumption',x),data.GLMMinput.timepoint)&cellfun(@(x) isequal('Familiar',x),data.GLMMinput.flavor));
     x = counts_norm(idx,idx_fam(j));
     xx = prctile(x,[10 25 50 75 90]);
     xx = [NaN mean(x)-std(x)./sqrt(length(x)) mean(x) mean(x)+std(x)./sqrt(length(x)) NaN];
@@ -107,17 +107,17 @@ xticklabels(TickLabels)
 ylim([0 2])
 yticks(0:1:2)
 xlim([0.5 length(idx_fam)+.5])
-ylabel('Fos (% per mm^3)')
+ylabel('FOS (% per mm^3)')
 legend([b,a],{'Familiar','Novel'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
 for i = 1:length(idx_fam)
-    StatsTbl(end+1,:) = table({'ED 1b'},{[TickLabels{i},': Novel vs. Familiar']},{'GLMM marginal effect'},{'3 timepoints'},{[12 12]},data.GLMMoutput.Eq2.flavor.Zstat(idx_fam(i),1),data.GLMMoutput.Eq2.flavor.pvalues_corrected(idx_fam(i),1));
+    StatsTbl(end+1,:) = table({'ED 1b'},{[TickLabels{i},': Novel vs. Familiar']},{'GLMM marginal effect'},{'3 time points'},{[12 12]},data.GLMMoutput.Eq2.flavor.Zstat(idx_fam(i),1),data.GLMMoutput.Eq2.flavor.pvalues_corrected(idx_fam(i),1));
 end
 
 subplot(1,2,2)
-load([data_path,'/Fos imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas','RegionLibrary')
+load([data_path,'/FOS imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas','RegionLibrary')
 hold on
 for i = 1:length(idx_fam)
     t = atlas==(RegionLibrary.reduced.index(idx_fam(i))+1);
@@ -144,19 +144,19 @@ hold off
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 1c','FontWeight','bold')
 
-fname = '/Fos imaging/kernel-density-estimates/kde-consumption-novel.npy';
+fname = '/FOS imaging/kernel-density-estimates/kde-consumption-novel.npy';
 KDE.Consume.Novel = readNPY([data_path,fname]);
-fname = '/Fos imaging/kernel-density-estimates/kde-consumption-familiar.npy';
+fname = '/FOS imaging/kernel-density-estimates/kde-consumption-familiar.npy';
 KDE.Consume.Familiar = readNPY([data_path,fname]);
-fname = '/Fos imaging/kernel-density-estimates/kde-malaise-novel.npy';
+fname = '/FOS imaging/kernel-density-estimates/kde-malaise-novel.npy';
 KDE.Malaise.Novel = readNPY([data_path,fname]);
-fname = '/Fos imaging/kernel-density-estimates/kde-malaise-familiar.npy';
+fname = '/FOS imaging/kernel-density-estimates/kde-malaise-familiar.npy';
 KDE.Malaise.Familiar = readNPY([data_path,fname]);
-fname = '/Fos imaging/kernel-density-estimates/kde-retrieval-novel.npy';
+fname = '/FOS imaging/kernel-density-estimates/kde-retrieval-novel.npy';
 KDE.Retrieval.Novel = readNPY([data_path,fname]);
-fname = '/Fos imaging/kernel-density-estimates/kde-retrieval-familiar.npy';
+fname = '/FOS imaging/kernel-density-estimates/kde-retrieval-familiar.npy';
 KDE.Retrieval.Familiar = readNPY([data_path,fname]);
-load([data_path,'/Fos imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas','RegionLibrary')
+load([data_path,'/FOS imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas','RegionLibrary')
 atlasmask  = atlas>=1028 | atlas<=1;
 KDE.Consume.Novel(atlasmask) = NaN;
 KDE.Consume.Familiar(atlasmask) = NaN;

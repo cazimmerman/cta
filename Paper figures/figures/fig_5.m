@@ -111,11 +111,11 @@ hold off
 
 T = readtable([data_path,'/GLMMs/PKA-photometry-GLMM-output.csv']);
 p = multicmp(T{4,2:5},'up',0.05);
-StatsTbl = table({'5f'},{'Day 0: Port A vs. Port B'},{'GLMM marginal effect'},{'4 days'},{[size(PortA,2)]},-T{3,2},p(1), ...
+StatsTbl = table({'5f'},{'Day 0: Port A vs. Port B'},{'GLMM marginal effect'},{'4 days'},{[size(PortA,2)]},T{3,2},p(1), ...
     'VariableNames',{'Figure panel','Group','Statistical test','Multiple comparisons','Sample size','Test statistic','P-value'});
-StatsTbl(end+1,:) = table({'5f'},{'Day 1: Port A vs. Port B'},{'GLMM marginal effect'},{'4 days'},{[size(PortA,2)]},-T{3,3},p(2));
-StatsTbl(end+1,:) = table({'5f'},{'Day 2: Port A vs. Port B'},{'GLMM marginal effect'},{'4 days'},{[size(PortA,2)]},-T{3,4},p(3));
-StatsTbl(end+1,:) = table({'5f'},{'Day 3: Port A vs. Port B'},{'GLMM marginal effect'},{'4 days'},{[size(PortA,2)]},-T{3,5},p(4));
+StatsTbl(end+1,:) = table({'5f'},{'Day 1: Port A vs. Port B'},{'GLMM marginal effect'},{'4 days'},{[size(PortA,2)]},T{3,3},p(2));
+StatsTbl(end+1,:) = table({'5f'},{'Day 2: Port A vs. Port B'},{'GLMM marginal effect'},{'4 days'},{[size(PortA,2)]},T{3,4},p(3));
+StatsTbl(end+1,:) = table({'5f'},{'Day 3: Port A vs. Port B'},{'GLMM marginal effect'},{'4 days'},{[size(PortA,2)]},T{3,5},p(4));
 %% Fig 5g
 
 figure('Position', get(0, 'Screensize'))
@@ -183,7 +183,7 @@ xlim([309 364])
 ylim([200 255])
 set(gca,'Ydir','reverse')
 set(gca,'Xdir','reverse')
-title('Novel flavor')
+title('Novel flavour')
 axis off
 set(gca,'FontSize',12)
 hold off

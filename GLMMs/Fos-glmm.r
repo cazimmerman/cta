@@ -5,7 +5,7 @@ library("glmmTMB")
 library("marginaleffects")
 library("stringr")
 
-inpath <- "GLMMs/Fos-GLMMs/"
+inpath <- "GLMMs/FOS-GLMM-data/"
 flavor <- read.table(paste(inpath, "flavor.csv", sep = ""), sep = ",", col.names = "flavor")
 timepoint <- read.table(paste(inpath, "timepoint.csv", sep = ""), sep = ",", col.names = "timepoint")
 batch <- read.table(paste(inpath, "batch.csv", sep = ""), sep = ",", col.names = "batch")
@@ -64,7 +64,7 @@ for (i in 1:201) {
 
 ##### Equation 5 #####
 DF <- read.table(paste(inpath, "LS-hM3D.csv", sep = ""), sep = ",", header=TRUE)
-glmm5_LS <- glmmTMB(LS.Fos ~ Timepoint + Sex + (1 | Batch) + offset(log(Total.Fos)), data = DF, family = "nbinom2")
+glmm5_LS <- glmmTMB(LS.FOS ~ Timepoint + Sex + (1 | Batch) + offset(log(Total.FOS)), data = DF, family = "nbinom2")
 summary(glmm5_LS)
-glmm5_CEA <- glmmTMB(CEA.Fos ~ Timepoint + Sex + (1 | Batch) + offset(log(Total.Fos)), data = DF, family = "nbinom2")
+glmm5_CEA <- glmmTMB(CEA.FOS ~ Timepoint + Sex + (1 | Batch) + offset(log(Total.FOS)), data = DF, family = "nbinom2")
 summary(glmm5_CEA)

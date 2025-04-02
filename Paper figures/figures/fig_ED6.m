@@ -5,15 +5,15 @@ disp('Generating panels for Extended Data Figure 6...')
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 6b','FontWeight','bold')
-load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data');
+load([data_path,'/FOS imaging/FOS-GLMM-statistics.mat'],'data');
 
 hold on
 axis square
-counts_norm = [data.GLMMinput.counts./data.GLMMinput.offset./data.regions.size']*100;
+counts_norm = [data.GLMMinput.counts./data.GLMMinput.totalcounts./data.regions.size']*100;
 idx = find(data.regions.name=='Parabrachial nucleus');
 phases = {'Consumption','Malaise','CGRP stim','Retrieval'};
 for j = 1:length(phases)
-    PHASEidx = find(cellfun(@(x) isequal(phases{j},x),data.GLMMinput.phase));
+    PHASEidx = find(cellfun(@(x) isequal(phases{j},x),data.GLMMinput.timepoint));
     x = counts_norm(PHASEidx,idx);
     xx = [NaN mean(x)-std(x)./sqrt(length(x)) mean(x) mean(x)+std(x)./sqrt(length(x)) NaN];
     scatter(ones(1,length(x))*j+rand(1,length(x))*.1-.05,x,64,'filled','MarkerFaceColor',[.85 .85 .85],'MarkerEdgeColor','w')
@@ -22,19 +22,19 @@ for j = 1:length(phases)
     plot([j j],[xx(1) xx(5)],'k','LineWidth',1)
 end
 xlim([.5 4.5]); xticks(1:4); xticklabels({'Consume','Malaise','CGRP stim','Retrieval'})
-ylabel('PB Fos (% per mm^3)'); ylim([0 2.5]); yticks(0:.5:2.5);
+ylabel('PB FOS (% per mm^3)'); ylim([0 2.5]); yticks(0:.5:2.5);
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 %% Fig ED6c
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 6c','FontWeight','bold')
-load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/FOS imaging/FOS-GLMM-statistics.mat'],'data')
 
 T = readtable([data_path,'/source data/Fig-1e.csv']);
 idx = find(data.GLMMoutput.Eq2.modelstats.significant);
 idx_amygdala = idx(find(T.Cluster==1))';
-idx_other = setdiff(find(data.GLMMoutput.Eq2.modelstats.significant),[find(data.regions.name=='Parabrachial nucleus');idx_amygdala]);
+idx_other = setdiff(find(data.GLMMoutput.Eq2.modelstats.significant),[find(data.regions.name=='Parabrachial nucleus');idx_amygdala']);
 
 subplot(1,2,1)
 hold on
@@ -58,8 +58,8 @@ xlim([-4 3])
 ylim([-4 3])
 xticks(xlim)
 yticks(ylim)
-xlabel(['Malaise',char(10),'Average Fos (Z)'])
-ylabel(['CGRP stim',char(10),'Average Fos (Z)'])
+xlabel(['Malaise',char(10),'Average FOS (Z)'])
+ylabel(['CGRP stim',char(10),'Average FOS (Z)'])
 title('Amygdala network')
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
@@ -90,8 +90,8 @@ xlim([-13 2])
 ylim([-13 2])
 xticks(xlim)
 yticks(ylim)
-xlabel(['Malaise',char(10),'Average Fos (Z)'])
-ylabel(['CGRP stim',char(10),'Average Fos (Z)'])
+xlabel(['Malaise',char(10),'Average FOS (Z)'])
+ylabel(['CGRP stim',char(10),'Average FOS (Z)'])
 title('Other regions')
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
@@ -102,12 +102,12 @@ StatsTbl(end+1,:) = table({'ED 6c, bottom'},{'Malaise vs. CGRP stim'},{'Pearson 
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 6d','FontWeight','bold')
-load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/FOS imaging/FOS-GLMM-statistics.mat'],'data')
 
 T = readtable([data_path,'/source data/Fig-1e.csv']);
 idx = find(data.GLMMoutput.Eq2.modelstats.significant);
 idx_amygdala = idx(find(T.Cluster==1))';
-idx_other = setdiff(find(data.GLMMoutput.Eq2.modelstats.significant),[find(data.regions.name=='Parabrachial nucleus');idx_amygdala]);
+idx_other = setdiff(find(data.GLMMoutput.Eq2.modelstats.significant),[find(data.regions.name=='Parabrachial nucleus');idx_amygdala']);
 
 subplot(1,2,1)
 hold on
@@ -131,8 +131,8 @@ xlim([-1 3])
 ylim([0 5])
 xticks(xlim)
 yticks(ylim)
-xlabel(['Malaise',char(10),'Novel – Familiar ΔFos (Z)'])
-ylabel(['CGRP stim',char(10),'Novel – Familiar ΔFos (Z)'])
+xlabel(['Malaise',char(10),'Novel – Familiar ΔFOS (Z)'])
+ylabel(['CGRP stim',char(10),'Novel – Familiar ΔFOS (Z)'])
 title('Amygdala network')
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
@@ -162,8 +162,8 @@ xlim([-3 3])
 ylim([-4 5])
 xticks(xlim)
 yticks(ylim)
-xlabel(['Malaise',char(10),'Novel – Familiar ΔFos (Z)'])
-ylabel(['CGRP stim',char(10),'Novel – Familiar ΔFos (Z)'])
+xlabel(['Malaise',char(10),'Novel – Familiar ΔFOS (Z)'])
+ylabel(['CGRP stim',char(10),'Novel – Familiar ΔFOS (Z)'])
 title('Other regions')
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
@@ -175,11 +175,11 @@ StatsTbl(end+1,:) = table({'ED 6D, bottom'},{'Malaise vs. CGRP stim'},{'Pearson 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 6e','FontWeight','bold')
 
-fname = '/Fos imaging/kernel-density-estimates/kde-cgrp-stim-novel.npy';
+fname = '/FOS imaging/kernel-density-estimates/kde-cgrp-stim-novel.npy';
 KDE.CGRP.Novel = readNPY([data_path,fname]);
-fname = '/Fos imaging/kernel-density-estimates/kde-cgrp-stim-familiar.npy';
+fname = '/FOS imaging/kernel-density-estimates/kde-cgrp-stim-familiar.npy';
 KDE.CGRP.Familiar = readNPY([data_path,fname]);
-load([data_path,'/Fos imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas','RegionLibrary')
+load([data_path,'/FOS imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas','RegionLibrary')
 atlasmask  = atlas>=1028 | atlas<=1;
 KDE.CGRP.Novel(atlasmask) = NaN;
 KDE.CGRP.Familiar(atlasmask) = NaN;

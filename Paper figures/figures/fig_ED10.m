@@ -23,7 +23,7 @@ plot([1 1],[xx(2) xx(4)],'color','k','LineWidth',1)
 xx = [NaN mean(B)-std(B)./sqrt(length(B)) mean(B) mean(B)+std(B)./sqrt(length(B)) NaN];
 plot([-0.125 0.125]+2,[xx(3) xx(3)],'color','k','LineWidth',1)
 plot([1 1]*2,[xx(2) xx(4)],'color','k','LineWidth',1)
-ylabel('Flavor-preferring neurons (%)'); ylim([0 60]); yticks(0:10:60);
+ylabel('Flavour-preferring neurons (%)'); ylim([0 60]); yticks(0:10:60);
 xlim([.5 2.5]); xticks([1 2]); xticklabels({'Conditioning','Retrieval'});
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
@@ -96,7 +96,7 @@ x1 = xlim; y1 = ylim;
 xticks([]); yticks([]);
 xlabel('PC1'); ylabel('PC2');
 set(gca,'FontSize',12,'LineWidth',1)
-title('CGRP stim conditioning day','FontWeight','normal')
+title('CGRP stim conditioning day')
 hold off
 
 ax2 = subplot(1,2,2);
@@ -125,7 +125,7 @@ y2 = ylim; x2 = xlim;
 xticks([]); yticks([]);
 xlabel('PC1'); ylabel('PC2');
 set(gca,'FontSize',12,'LineWidth',1)
-title('Retrieval day','FontWeight','normal')
+title('Retrieval day')
 hold off
 
 x = [min([x1,x2]) max([x1 x2])];
@@ -173,9 +173,9 @@ heatmap(flipud(pl),[],[],[],'Colormap',cmap,'ColorLevels',1000,'MaxColorValue',.
 nomod = size(C1,1); nopref = size(B1,1); flavorpref = size(A1,1);
 yticks([nomod./2 nomod+nopref./2+15 nomod+nopref+flavorpref./2+30]+0.5)
 ytickangle(90)
-yticklabels({'Non-selective','Water','Flavor'})
+yticklabels({'Nonselective','Water','Flavour'})
 xticks([750 750+1500+75])
-xticklabels({'Flavor','Water'})
+xticklabels({'Flavour','Water'})
 title('CGRP^{CEA} stim conditioning day')
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0, 0],'TickDir','out')
 hold off
@@ -196,7 +196,7 @@ subplot(1,3,3)
 hold on
 heatmap(flipud(pl),[],[],[],'Colormap',cmap,'ColorLevels',1000,'MaxColorValue',.5,'MinColorValue',-.5,'NaNColor',[1 1 1]);
 xticks([750 750+1500+75])
-xticklabels({'Flavor','Water'})
+xticklabels({'Flavour','Water'})
 title('Retrieval day')
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0, 0],'TickDir','out')
 hold off
@@ -222,7 +222,7 @@ plot([1 1],[xx(2) xx(4)],'color','k','LineWidth',1)
 xx = [NaN mean(B)-std(B)./sqrt(length(B)) mean(B) mean(B)+std(B)./sqrt(length(B)) NaN];
 plot([-0.125 0.125]+2,[xx(3) xx(3)],'color','k','LineWidth',1)
 plot([1 1]*2,[xx(2) xx(4)],'color','k','LineWidth',1)
-ylabel('Flavor-preferring neurons (%)'); ylim([0 60]); yticks(0:10:60);
+ylabel('Flavour-preferring neurons (%)'); ylim([0 60]); yticks(0:10:60);
 xlim([.5 2.5]); xticks([1 2]); xticklabels({'Conditioning','Retrieval'});
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
@@ -323,7 +323,7 @@ b = plot(times,mean(A2),'color',[229 45 38]/255,'LineWidth',1);
 ylabel('Spiking (σ)'); ylim([-.1 .3]); yticks(-.1:.1:.3);
 xlabel('Time (s)'); xlim([-5 10]); xticks(-5:5:10)
 legend([a,b],{'LiCl conditioning day','Retrieval day'})
-title(['Control mice',char(10),'All Flavor-preferring'])
+title(['Control mice',char(10),'All Flavour-preferring'])
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
@@ -335,11 +335,11 @@ A = data.stats.response.novel(idx);
 B = data.stats_retrieval.response.novel(idx);
 simpleboxplot(1,A,'k')
 simpleboxplot(2,B,[229 45 38]/255)
-ylabel('Flavor response (σ)'); ylim([-.1 .3]); yticks(ylim)
+ylabel('Flavour response (σ)'); ylim([-.1 .3]); yticks(ylim)
 xticks([1,2])
 xticklabels({'LiCl conditioning day','Retrieval day'})
 xlim([0.25 2.75])
-title(['Control mice',char(10),'All Flavor-preferring'])
+title(['Control mice',char(10),'All Flavour-preferring'])
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
@@ -366,7 +366,7 @@ b = plot(times,mean(A2),'color',[229 45 38]/255,'LineWidth',1);
 ylabel('Spiking (σ)'); ylim([-.1 .3]); yticks(-.1:.1:.3);
 xlabel('Time (s)'); xlim([-5 10]); xticks(-5:5:10)
 legend([a,b],{'LiCl conditioning day','Retrieval day'})
-title(['CGRP neuron ablation',char(10),'All Flavor-preferring'])
+title(['CGRP neuron ablation',char(10),'All Flavour-preferring'])
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
@@ -378,11 +378,11 @@ A = data.stats.response.novel(idx);
 B = data.stats_retrieval.response.novel(idx);
 simpleboxplot(1,A,'k')
 simpleboxplot(2,B,[229 45 38]/255)
-ylabel('Flavor response (σ)'); ylim([-.1 .3]); yticks(ylim)
+ylabel('Flavour response (σ)'); ylim([-.1 .3]); yticks(ylim)
 xticks([1,2])
 xticklabels({'LiCl conditioning day','Retrieval day'})
 xlim([0.25 2.75])
-title(['CGRP neuron ablation',char(10),'All Flavor-preferring'])
+title(['CGRP neuron ablation',char(10),'All Flavour-preferring'])
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
@@ -426,9 +426,9 @@ heatmap(flipud(pl),[],[],[],'Colormap',cmap,'ColorLevels',1000,'MaxColorValue',.
 nomod = size(C1,1); nopref = size(B1,1); flavorpref = size(A1,1);
 yticks([nomod./2 nomod+nopref./2+15 nomod+nopref+flavorpref./2+30]+0.5)
 ytickangle(90)
-yticklabels({'Non-selective','Water','Flavor'})
+yticklabels({'Nonselective','Water','Flavour'})
 xticks([750 750+1500+75])
-xticklabels({'Flavor','Water'})
+xticklabels({'Flavour','Water'})
 title('Novel day')
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0, 0],'TickDir','out')
 hold off
@@ -440,7 +440,7 @@ subplot(1,2,2)
 hold on
 heatmap(flipud(pl),[],[],[],'Colormap',cmap,'ColorLevels',1000,'MaxColorValue',.5,'MinColorValue',-.5,'NaNColor',[1 1 1]);
 xticks([750 750+1500+75])
-xticklabels({'Flavor','Water'})
+xticklabels({'Flavour','Water'})
 title('Familiar day')
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0, 0],'TickDir','out')
 hold off
@@ -466,7 +466,7 @@ plot([1 1],[xx(2) xx(4)],'color','k','LineWidth',1)
 xx = [NaN mean(B)-std(B)./sqrt(length(B)) mean(B) mean(B)+std(B)./sqrt(length(B)) NaN];
 plot([-0.125 0.125]+2,[xx(3) xx(3)],'color','k','LineWidth',1)
 plot([1 1]*2,[xx(2) xx(4)],'color','k','LineWidth',1)
-ylabel('Flavor-preferring neurons (%)'); ylim([0 60]); yticks(0:10:60);
+ylabel('Flavour-preferring neurons (%)'); ylim([0 60]); yticks(0:10:60);
 xlim([.5 2.5]); xticks([1 2]); xticklabels({'Novel','Familiar'});
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
@@ -510,7 +510,7 @@ A = data.stats.response.novel(idx);
 B = data.stats_retrieval.response.novel(idx);
 simpleboxplot(1,A,'k')
 simpleboxplot(2,B,[55 136 193]/255)
-ylabel('Flavor response (σ)'); ylim([-.2 .2]); yticks(ylim)
+ylabel('Flavour response (σ)'); ylim([-.2 .2]); yticks(ylim)
 xticks([1,2])
 xticklabels({'Novel day','Familiar day'})
 xlim([0.25 2.75])
@@ -572,7 +572,7 @@ x1 = xlim; y1 = ylim;
 xticks([]); yticks([]);
 xlabel('PC1'); ylabel('PC2');
 set(gca,'FontSize',12,'LineWidth',1)
-title('Novel day','FontWeight','normal')
+title('Novel day')
 hold off
 
 ax2 = subplot(1,2,2);
@@ -601,7 +601,7 @@ y2 = ylim; x2 = xlim;
 xticks([]); yticks([]);
 xlabel('PC1'); ylabel('PC2');
 set(gca,'FontSize',12,'LineWidth',1)
-title('Familiar day','FontWeight','normal')
+title('Familiar day')
 hold off
 
 x = [min([x1,x2]) max([x1 x2])];

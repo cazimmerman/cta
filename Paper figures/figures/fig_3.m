@@ -40,9 +40,9 @@ heatmap(flipud(pl),[],[],[],'Colormap',cmap,'ColorLevels',1000,'MaxColorValue',.
 nomod = size(C1,1); nopref = size(B1,1); familiarpref = size(A1,1);
 yticks([nomod./2 nomod+nopref./2+15 nomod+nopref+familiarpref./2+30]+0.5)
 ytickangle(90)
-yticklabels({['Non-selective'],['Water'],['Flavor']})
+yticklabels({['Nonselective'],['Water'],['Flavour']})
 xticks([750 750+1500+75])
-xticklabels({'Novel flavor','Water'})
+xticklabels({'Novel flavour','Water'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0, 0],'TickDir','out')
 hold off
 
@@ -74,7 +74,7 @@ b = plot(t,nanmean(A(idx,:)),'color',[55 136 193]/255,'LineWidth',1);
 idx = find(data.stats.significant & data.stats.preference>0);
 fill([t fliplr(t)],[nanmean(A(idx,:))+nanstd(A(idx,:))/sqrt(size(A(idx,:),1)) fliplr(nanmean(A(idx,:))-nanstd(A(idx,:))/sqrt(size(A(idx,:),1)))],[252 216 213]/255,'LineStyle','none');
 c = plot(t,nanmean(A(idx,:)),'color',[229 45 38]/255,'LineWidth',1);
-legend([c,b,a],{'Flavor-pref','Water-pref','Non-selective'})
+legend([c,b,a],{'Flavour-pref','Water-pref','Nonselective'})
 ylim([-.05 .15])
 yticks(-.05:.05:.15)
 xticks(0:15:90)
@@ -98,7 +98,7 @@ yticks([-.1 .2])
 xticks(1:3)
 xlim([.25 3.75])
 ylabel('CGRP response (σ)')
-xticklabels({'Flavor-pref','Water-pref','Non-selective'})
+xticklabels({'Flavour-pref','Water-pref','Nonselective'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
@@ -107,10 +107,10 @@ stat = []; p = [];
 [p(2),~,s] = ranksum(X.Novel,X.Neither,'method','approximate'); stat(2) = s.zval;
 [p(3),~,s] = ranksum(X.Water,X.Neither,'method','approximate'); stat(3) = s.zval;
 p = multicmp(p,'up',0.05);
-StatsTbl = table({'3e'},{'Flavor-pref vs. Water-pref'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Novel) length(X.Water)]},stat(1),p(1), ...
+StatsTbl = table({'3e'},{'Flavour-pref vs. Water-pref'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Novel) length(X.Water)]},stat(1),p(1), ...
     'VariableNames',{'Figure panel','Group','Statistical test','Multiple comparisons','Sample size','Test statistic','P-value'});
-StatsTbl(end+1,:) = table({'3e'},{'Flavor-pref vs. Non-selective'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Novel) length(X.Neither)]},stat(2),p(2));
-StatsTbl(end+1,:) = table({'3e'},{'Water-pref vs. Non-selective'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Water) length(X.Neither)]},stat(3),p(3));
+StatsTbl(end+1,:) = table({'3e'},{'Flavour-pref vs. Nonselective'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Novel) length(X.Neither)]},stat(2),p(2));
+StatsTbl(end+1,:) = table({'3e'},{'Water-pref vs. Nonselective'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Water) length(X.Neither)]},stat(3),p(3));
 %% Fig 3f
 
 figure('Position', get(0, 'Screensize'))
@@ -139,9 +139,9 @@ heatmap(flipud(pl3),[],[],[],'Colormap',cmap,'ColorLevels',1000,'MaxColorValue',
 nomod = size(C3,1); nopref = size(B3,1); familiarpref = size(A3,1);
 yticks([nomod./2 nomod+nopref./2+15 nomod+nopref+familiarpref./2+30]+0.5)
 ytickangle(90)
-yticklabels({['Non-selective'],['Water'],['Flavor']})
+yticklabels({['Nonselective'],['Water'],['Flavour']})
 xticks([750 750+1500+75])
-xticklabels({'Novel flavor','Water'})
+xticklabels({'Novel flavour','Water'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0, 0],'TickDir','out')
 hold off
 
@@ -167,7 +167,7 @@ xticks(-1:1:4)
 xlim([-1 4])
 xlabel('Time (s)')
 ylabel('Spiking (σ)')
-legend([c,b,a],{'Flavor-pref','Water-pref','Non-selective'})
+legend([c,b,a],{'Flavour-pref','Water-pref','Nonselective'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
@@ -185,7 +185,7 @@ yticks([-.1 .2])
 xticks(1:3)
 xlim([.25 3.75])
 ylabel('CGRP stim bout response (σ)')
-xticklabels({'Flavor-pref','Water-pref','Non-selective'})
+xticklabels({'Flavour-pref','Water-pref','Nonselective'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
@@ -194,9 +194,9 @@ stat = []; p = [];
 [p(2),~,s] = ranksum(X.Novel,X.Neither,'method','approximate'); stat(2) = s.zval;
 [p(3),~,s] = ranksum(X.Water,X.Neither,'method','approximate'); stat(3) = s.zval;
 p = multicmp(p,'up',0.05);
-StatsTbl(end+1,:) = table({'3f'},{'Flavor-pref vs. Water-pref'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Novel) length(X.Water)]},stat(1),p(1));
-StatsTbl(end+1,:) = table({'3f'},{'Flavor-pref vs. Non-selective'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Novel) length(X.Neither)]},stat(2),p(2));
-StatsTbl(end+1,:) = table({'3f'},{'Water-pref vs. Non-selective'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Water) length(X.Neither)]},stat(3),p(3));
+StatsTbl(end+1,:) = table({'3f'},{'Flavour-pref vs. Water-pref'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Novel) length(X.Water)]},stat(1),p(1));
+StatsTbl(end+1,:) = table({'3f'},{'Flavour-pref vs. Nonselective'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Novel) length(X.Neither)]},stat(2),p(2));
+StatsTbl(end+1,:) = table({'3f'},{'Water-pref vs. Nonselective'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Water) length(X.Neither)]},stat(3),p(3));
 %% Fig 3j
 
 figure('Position', get(0, 'Screensize'))
@@ -225,7 +225,7 @@ hold on
 plot(1:10,cumsum(explained(1:10)),'k','linewidth',1)
 scatter(1:10,cumsum(explained(1:10)),100,'k','MarkerFacecolor','k')
 xlim([0 10]); xticks(0:5:10); xlabel('Principal components');
-ylim([0 100]); yticks(0:50:100); ylabel('Var. explained (%)');
+ylim([0 100]); yticks(0:50:100); ylabel('Variance explained (%)');
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 %% Fig 3k
@@ -384,7 +384,7 @@ for k = 1:3
     xlabel('PC1')
     ylabel('PC2')
     set(gca,'FontSize',12,'LineWidth',1)
-    title(['Animal ',num2str(k)],'FontWeight','normal')
+    title(['Animal ',num2str(k)])
     hold off
 end
 
@@ -463,7 +463,7 @@ b = plot(t,nanmean(A(idx,:)),'color',[55 136 193]/255,'LineWidth',1);
 idx = find(data.stats.significant & data.stats.preference>0);
 fill([t fliplr(t)],[nanmean(A(idx,:))+nanstd(A(idx,:))/sqrt(size(A(idx,:),1)) fliplr(nanmean(A(idx,:))-nanstd(A(idx,:))/sqrt(size(A(idx,:),1)))],[252 216 213]/255,'LineStyle','none');
 c = plot(t,nanmean(A(idx,:)),'color',[229 45 38]/255,'LineWidth',1);
-legend([c,b,a],{'Flavor-pref','Water-pref','Non-selective'})
+legend([c,b,a],{'Flavour-pref','Water-pref','Nonselective'})
 ylim([-.1 .3])
 yticks(-.1:.1:.3)
 xticks(0:15:90)
@@ -487,7 +487,7 @@ yticks([-.2 .5])
 xticks(1:3)
 xlim([.25 3.75])
 ylabel('LiCl response (σ)')
-xticklabels({'Flavor-pref','Water-pref','Non-selective'})
+xticklabels({'Flavour-pref','Water-pref','Nonselective'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
@@ -496,9 +496,9 @@ stat = []; p = [];
 [p(2),~,s] = ranksum(X.Novel,X.Neither,'method','approximate'); stat(2) = s.zval;
 [p(3),~,s] = ranksum(X.Water,X.Neither,'method','approximate'); stat(3) = s.zval;
 p = multicmp(p,'up',0.05);
-StatsTbl(end+1,:) = table({'3n'},{'Flavor-pref vs. Water-pref'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Novel) length(X.Water)]},stat(1),p(1));
-StatsTbl(end+1,:) = table({'3n'},{'Flavor-pref vs. Non-selective'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Novel) length(X.Neither)]},stat(2),p(2));
-StatsTbl(end+1,:) = table({'3n'},{'Water-pref vs. Non-selective'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Water) length(X.Neither)]},stat(3),p(3));
+StatsTbl(end+1,:) = table({'3n'},{'Flavour-pref vs. Water-pref'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Novel) length(X.Water)]},stat(1),p(1));
+StatsTbl(end+1,:) = table({'3n'},{'Flavour-pref vs. Nonselective'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Novel) length(X.Neither)]},stat(2),p(2));
+StatsTbl(end+1,:) = table({'3n'},{'Water-pref vs. Nonselective'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Water) length(X.Neither)]},stat(3),p(3));
 %% Fig 3q
 
 figure('Position', get(0, 'Screensize'))
@@ -520,7 +520,7 @@ b = plot(t,nanmean(A(idx,:)),'color',[55 136 193]/255,'LineWidth',1);
 idx = find(data.stats.significant & data.stats.preference>0);
 fill([t fliplr(t)],[nanmean(A(idx,:))+nanstd(A(idx,:))/sqrt(size(A(idx,:),1)) fliplr(nanmean(A(idx,:))-nanstd(A(idx,:))/sqrt(size(A(idx,:),1)))],[252 216 213]/255,'LineStyle','none');
 c = plot(t,nanmean(A(idx,:)),'color',[229 45 38]/255,'LineWidth',1);
-legend([c,b,a],{'Flavor-pref','Water-pref','Non-selective'})
+legend([c,b,a],{'Flavour-pref','Water-pref','Nonselective'})
 ylim([-.1 .3])
 yticks(-.1:.1:.3)
 xticks(0:15:90)
@@ -544,7 +544,7 @@ yticks([-.2 .5])
 xticks(1:3)
 xlim([.25 3.75])
 ylabel('LiCl response (σ)')
-xticklabels({'Flavor-pref','Water-pref','Non-selective'})
+xticklabels({'Flavour-pref','Water-pref','Nonselective'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
@@ -553,9 +553,9 @@ stat = []; p = [];
 [p(2),~,s] = ranksum(X.Novel,X.Neither,'method','approximate'); stat(2) = s.zval;
 [p(3),~,s] = ranksum(X.Water,X.Neither,'method','approximate'); stat(3) = s.zval;
 p = multicmp(p,'up',0.05);
-StatsTbl(end+1,:) = table({'3q'},{'Flavor-pref vs. Water-pref'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Novel) length(X.Water)]},stat(1),p(1));
-StatsTbl(end+1,:) = table({'3q'},{'Flavor-pref vs. Non-selective'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Novel) length(X.Neither)]},stat(2),p(2));
-StatsTbl(end+1,:) = table({'3q'},{'Water-pref vs. Non-selective'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Water) length(X.Neither)]},stat(3),p(3));
+StatsTbl(end+1,:) = table({'3q'},{'Flavour-pref vs. Water-pref'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Novel) length(X.Water)]},stat(1),p(1));
+StatsTbl(end+1,:) = table({'3q'},{'Flavour-pref vs. Nonselective'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Novel) length(X.Neither)]},stat(2),p(2));
+StatsTbl(end+1,:) = table({'3q'},{'Water-pref vs. Nonselective'},{'Wilcoxon rank-sum (approx.)'},{'3 pairs of neuron groups'},{[length(X.Water) length(X.Neither)]},stat(3),p(3));
 
 drawnow
 %% Stats table

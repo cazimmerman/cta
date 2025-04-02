@@ -15,7 +15,7 @@ fill([data.time fliplr(data.time)],[mean(data.flavor)+std(data.flavor)/sqrt(size
 b = plot(data.time,mean(data.flavor)*0.02,'Color',[229 45 38]/255,'LineWidth',1);
 xlabel('Time (min)'); xlim([0 25]); xticks(0:5:25);
 ylabel('Cumulative intake (ml)'); ylim([0 0.6]); yticks(0:.2:.6);
-legend([a,b],{'Water','Novel flavor'})
+legend([a,b],{'Water','Novel flavour'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 %% Fig ED8b
@@ -39,8 +39,8 @@ fill([times fliplr(times)],[mean(data.psth.smooth.novel(idx,501:end))+std(data.p
 c = plot(times,mean(data.psth.smooth.novel(idx,501:end)),'color',[229 45 38]/255,'LineWidth',1);
 xlabel('Time (s)'); xlim([-5 10]); xticks(-5:5:10);
 ylabel('Spiking (σ)'); ylim([-.1 .2]); yticks(-.1:.1:.2);
-title('Novel flavor response')
-legend([c,b,a],{'Flavor-pref','Water-pref','Non-selective'})
+title('Novel flavour response')
+legend([c,b,a],{'Flavour-pref','Water-pref','Nonselective'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
@@ -60,19 +60,19 @@ c = plot(times,mean(data.psth.smooth.water(idx,501:end)),'color',[229 45 38]/255
 xlabel('Time (s)'); xlim([-5 10]); xticks(-5:5:10);
 ylabel('Spiking (σ)'); ylim([-.1 .2]); yticks(-.1:.1:.2);
 title('Water response')
-legend([c,b,a],{'Flavor-pref','Water-pref','Non-selective'})
+legend([c,b,a],{'Flavour-pref','Water-pref','Nonselective'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
 subplot(1,3,3)
 hold on
 axis square
-a=pie([sum(data.stats.significant & data.stats.preference>0) sum(data.stats.significant & data.stats.preference<0) sum(~data.stats.significant)],{'Flavor-pref','Water-pref','Non-selective'});
+a=pie([sum(data.stats.significant & data.stats.preference>0) sum(data.stats.significant & data.stats.preference<0) sum(~data.stats.significant)],{'Flavour-pref','Water-pref','Nonselective'});
 a(1).FaceColor = [229 45 38]/255; a(1).EdgeColor = [1 1 1];
 a(3).FaceColor = [55 136 193]/255; a(3).EdgeColor = [1 1 1];
 a(5).FaceColor = [.85 .85 .85]; a(5).EdgeColor = [1 1 1];
 xticks([]); yticks([])
-title('Flavor selectivity')
+title('Flavour selectivity')
 axis off
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off

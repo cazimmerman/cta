@@ -5,7 +5,7 @@ disp('Generating panels for Extended Data Figure 3...')
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 3a','FontWeight','bold')
-load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/FOS imaging/FOS-GLMM-statistics.mat'],'data')
 
 hold on
 axis square
@@ -16,7 +16,7 @@ x.Malaise = data.GLMMoutput.Eq2.flavor.Zstat(idx,2);
 x.Retrieval = data.GLMMoutput.Eq2.flavor.Zstat(idx,3);
 violinplot(x);
 xlim([0.5 3.5]); xticks(1:3);
-ylabel('Novel – Familiar ΔFos (Z)'); ylim([-5 5]); yticks(-5:2.5:5);
+ylabel('Novel – Familiar ΔFOS (Z)'); ylim([-5 5]); yticks(-5:2.5:5);
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
@@ -25,15 +25,15 @@ stat = []; p = [];
 [~,p(2),stat(2)] = kstest2(x.Consume,x.Retrieval);
 [~,p(3),stat(3)] = kstest2(x.Malaise,x.Retrieval);
 p = multicmp(p,'up',0.05);
-StatsTbl = table({'ED 3a'},{'Consume vs. Malaise'},{'Kolmogorov-Smirnov'},{'3 pairs of timepoints'},{[length(x.Consume)]},stat(1),p(1), ...
+StatsTbl = table({'ED 3a'},{'Consume vs. Malaise'},{'Kolmogorov-Smirnov'},{'3 pairs of time points'},{[length(x.Consume)]},stat(1),p(1), ...
     'VariableNames',{'Figure panel','Group','Statistical test','Multiple comparisons','Sample size','Test statistic','P-value'});
-StatsTbl(end+1,:) = table({'ED 3a'},{'Consume vs. Retrieval'},{'Kolmogorov-Smirnov'},{'3 pairs of timepoints'},{[length(x.Consume)]},stat(2),p(2));
-StatsTbl(end+1,:) = table({'ED 3a'},{'Malaise vs. Retrieval'},{'Kolmogorov-Smirnov'},{'3 pairs of timepoints'},{[length(x.Consume)]},stat(3),p(3));
+StatsTbl(end+1,:) = table({'ED 3a'},{'Consume vs. Retrieval'},{'Kolmogorov-Smirnov'},{'3 pairs of time points'},{[length(x.Consume)]},stat(2),p(2));
+StatsTbl(end+1,:) = table({'ED 3a'},{'Malaise vs. Retrieval'},{'Kolmogorov-Smirnov'},{'3 pairs of time points'},{[length(x.Consume)]},stat(3),p(3));
 %% Fig ED3b
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 3b','FontWeight','bold')
-load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/FOS imaging/FOS-GLMM-statistics.mat'],'data')
 
 hold on
 axis square
@@ -44,7 +44,7 @@ x.Malaise = data.GLMMoutput.Eq2.flavor.Zstat(idx,2);
 x.Retrieval = data.GLMMoutput.Eq2.flavor.Zstat(idx,3);
 violinplot(x);
 xlim([0.5 3.5]); xticks(1:3);
-ylabel('Novel – Familiar ΔFos (Z)'); ylim([-5 5]); yticks(-5:2.5:5);
+ylabel('Novel – Familiar ΔFOS (Z)'); ylim([-5 5]); yticks(-5:2.5:5);
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
@@ -53,14 +53,14 @@ stat = []; p = [];
 [~,p(2),stat(2)] = kstest2(x.Consume,x.Retrieval);
 [~,p(3),stat(3)] = kstest2(x.Malaise,x.Retrieval);
 p = multicmp(p,'up',0.05);
-StatsTbl(end+1,:) = table({'ED 3b'},{'Consume vs. Malaise'},{'Kolmogorov-Smirnov'},{'3 pairs of timepoints'},{[length(x.Consume)]},stat(1),p(1));
-StatsTbl(end+1,:) = table({'ED 3b'},{'Consume vs. Retrieval'},{'Kolmogorov-Smirnov'},{'3 pairs of timepoints'},{[length(x.Consume)]},stat(2),p(2));
-StatsTbl(end+1,:) = table({'ED 3b'},{'Malaise vs. Retrieval'},{'Kolmogorov-Smirnov'},{'3 pairs of timepoints'},{[length(x.Consume)]},stat(3),p(3));
+StatsTbl(end+1,:) = table({'ED 3b'},{'Consume vs. Malaise'},{'Kolmogorov-Smirnov'},{'3 pairs of time points'},{[length(x.Consume)]},stat(1),p(1));
+StatsTbl(end+1,:) = table({'ED 3b'},{'Consume vs. Retrieval'},{'Kolmogorov-Smirnov'},{'3 pairs of time points'},{[length(x.Consume)]},stat(2),p(2));
+StatsTbl(end+1,:) = table({'ED 3b'},{'Malaise vs. Retrieval'},{'Kolmogorov-Smirnov'},{'3 pairs of time points'},{[length(x.Consume)]},stat(3),p(3));
 %% Fig ED3c
 
 figure('Position', get(0, 'Screensize'))
 sgtitle('Extended Data Figure 3c','FontWeight','bold')
-load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/FOS imaging/FOS-GLMM-statistics.mat'],'data')
 
 hold on
 axis square
@@ -71,7 +71,7 @@ x.Malaise = data.GLMMoutput.Eq2.flavor.Zstat(idx,2);
 x.Retrieval = data.GLMMoutput.Eq2.flavor.Zstat(idx,3);
 violinplot(x);
 xlim([0.5 3.5]); xticks(1:3);
-ylabel('Novel – Familiar ΔFos (Z)'); ylim([-5 5]); yticks(-5:2.5:5);
+ylabel('Novel – Familiar ΔFOS (Z)'); ylim([-5 5]); yticks(-5:2.5:5);
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
@@ -80,13 +80,13 @@ stat = []; p = [];
 [~,p(2),stat(2)] = kstest2(x.Consume,x.Retrieval);
 [~,p(3),stat(3)] = kstest2(x.Malaise,x.Retrieval);
 p = multicmp(p,'up',0.05);
-StatsTbl(end+1,:) = table({'ED 3c'},{'Consume vs. Malaise'},{'Kolmogorov-Smirnov'},{'3 pairs of timepoints'},{[length(x.Consume)]},stat(1),p(1));
-StatsTbl(end+1,:) = table({'ED 3c'},{'Consume vs. Retrieval'},{'Kolmogorov-Smirnov'},{'3 pairs of timepoints'},{[length(x.Consume)]},stat(2),p(2));
-StatsTbl(end+1,:) = table({'ED 3c'},{'Malaise vs. Retrieval'},{'Kolmogorov-Smirnov'},{'3 pairs of timepoints'},{[length(x.Consume)]},stat(3),p(3));
+StatsTbl(end+1,:) = table({'ED 3c'},{'Consume vs. Malaise'},{'Kolmogorov-Smirnov'},{'3 pairs of time points'},{[length(x.Consume)]},stat(1),p(1));
+StatsTbl(end+1,:) = table({'ED 3c'},{'Consume vs. Retrieval'},{'Kolmogorov-Smirnov'},{'3 pairs of time points'},{[length(x.Consume)]},stat(2),p(2));
+StatsTbl(end+1,:) = table({'ED 3c'},{'Malaise vs. Retrieval'},{'Kolmogorov-Smirnov'},{'3 pairs of time points'},{[length(x.Consume)]},stat(3),p(3));
 %% Fig ED3e-n
 
-load([data_path,'/Fos imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas')
-load([data_path,'/Fos imaging/Fos-GLMM-statistics.mat'],'data')
+load([data_path,'/FOS imaging/modified-atlas/allen_ccfv3_modified_cz.mat'],'atlas')
+load([data_path,'/FOS imaging/FOS-GLMM-statistics.mat'],'data')
 T = readtable([data_path,'/source data/Fig-1e.csv']);
 significant = find(data.GLMMoutput.Eq2.modelstats.significant);
 panels = {'e','f','g','h','i','j','k','l','m','n'};
@@ -145,7 +145,7 @@ for i = 1:max(T.Cluster)
     plot([-0.125 0.125]+3,[xx(3) xx(3)],'color',c1,'LineWidth',1)
     plot([3 3],[xx(2) xx(4)],'color',c1,'LineWidth',1)
     xlim([0.5 3.5]); xticks(1:3); xticklabels({'Consume','Malaise','Retrieval'});
-    ylabel('Novel – Familiar ΔFos (Z)'); ylim([-5 5]); yticks(-5:2.5:5);
+    ylabel('Novel – Familiar ΔFOS (Z)'); ylim([-5 5]); yticks(-5:2.5:5);
     set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
     hold off
 end

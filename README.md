@@ -2,7 +2,7 @@
 
 
 This repository contains:
-- Code to generate the figures in the paper "A neural mechanism for learning from delayed postingestive feedback"
+- Code to generate the figures in the paper
 - Code to fit generalized linear mixed models (GLMMs) to the data in the paper
 - Code to run the brainwide cell detection pipeline (designed for Princeton computing clusters)
 
@@ -31,3 +31,6 @@ Data: https://doi.org/10.6084/m9.figshare.28327118
 
 
 bioRxiv: https://doi.org/10.1101/2023.10.06.561214
+
+
+Nature: https://doi.org/10.1038/s41586-025-08828-z

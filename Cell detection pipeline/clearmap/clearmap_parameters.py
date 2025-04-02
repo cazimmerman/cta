@@ -56,13 +56,6 @@ print()
 # Set ClearMap2 cell detection filter thresholds
 cell_detection_filter = {}
 
-# PMA values
-#cell_detection_filter['x'] = (0,352)
-#cell_detection_filter['y'] = (59,510)
-#cell_detection_filter['z'] = (0,540)
-#cell_detection_filter['size'] = (400,None)
-#cell_detection_filter['region'] = (2,1105)
-
 # Allen CCFv3 values
 cell_detection_filter['x'] = (0,320)
 cell_detection_filter['y'] = (0,528)

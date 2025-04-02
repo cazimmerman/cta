@@ -39,12 +39,12 @@ cmap = flipud(cbrewer('div','RdBu',1000,'spline')); cmap(cmap<0) = 0;
 subplot(1,3,1)
 hold on
 heatmap(flipud(pl),[],[],[],'Colormap',cmap,'ColorLevels',1000,'MaxColorValue',.5,'MinColorValue',-.5,'NaNColor',[1 1 1]);
-nomod = size(C1,1); nopref = size(B1,1); flavorpref = size(A1,1);
-yticks([nomod./2 nomod+nopref./2+15 nomod+nopref+flavorpref./2+30]+0.5)
+nomod = size(C1,1); nopref = size(B1,1); flavourpref = size(A1,1);
+yticks([nomod./2 nomod+nopref./2+15 nomod+nopref+flavourpref./2+30]+0.5)
 ytickangle(90)
-yticklabels({'Non-selective','Water','Flavor'})
+yticklabels({'Nonselective','Water','Flavour'})
 xticks([750 750+1500+75])
-xticklabels({'Flavor','Water'})
+xticklabels({'Flavour','Water'})
 title('Conditioning day')
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0, 0],'TickDir','out')
 hold off
@@ -65,7 +65,7 @@ subplot(1,3,3)
 hold on
 heatmap(flipud(pl),[],[],[],'Colormap',cmap,'ColorLevels',1000,'MaxColorValue',.5,'MinColorValue',-.5,'NaNColor',[1 1 1]);
 xticks([750 750+1500+75])
-xticklabels({'Flavor','Water'})
+xticklabels({'Flavour','Water'})
 title('Retrieval day')
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0, 0],'TickDir','out')
 hold off
@@ -89,7 +89,7 @@ fill([times fliplr(times)],[mean(A2)+std(A2)/sqrt(size(A2,1)) fliplr(mean(A2)-st
 b = plot(times,mean(A2),'color',[229 45 38]/255,'LineWidth',1);
 ylabel('Spiking (σ)'); ylim([-.2 .8]); yticks(-.2:.2:.8);
 xlabel('Time (s)'); xlim([-5 10]); xticks(-5:5:10)
-title('All Flavor-preferring')
+title('All Flavour-preferring')
 legend([a,b],{'Conditioning day','Retrieval day'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
@@ -190,13 +190,13 @@ scatter(A,B,100,[229 45 38]/255,'filled','MarkerEdgeColor','w')
 xlim([x(1) x(end)])
 yticks(ylim); xticks(xlim);
 xlabel('CGRP response (σ)')
-ylabel('ΔNovel flavor (σ)')
-title('Flavor-preferring')
+ylabel('ΔNovel flavour (σ)')
+title('Flavour-preferring')
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
 [r,p] = corr(A',B');
-StatsTbl = table({'4d, left'},{'CGRP vs. ΔNovel flavor'},{'Pearson correlation'},{'N/A'},{[length(A)]},r,p, ...
+StatsTbl = table({'4d, left'},{'CGRP vs. ΔNovel flavour'},{'Pearson correlation'},{'N/A'},{[length(A)]},r,p, ...
     'VariableNames',{'Figure panel','Group','Statistical test','Multiple comparisons','Sample size','Test statistic','P-value'});
 
 B = data.stats_retrieval.preference_subtracted(idx)-data.stats.preference_subtracted(idx);
@@ -220,7 +220,7 @@ xlim([x(1) x(end)])
 yticks(ylim); xticks(xlim);
 xlabel('CGRP response (σ)')
 ylabel('ΔSelectivity (σ)')
-title('Flavor-preferring')
+title('Flavour-preferring')
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
@@ -249,13 +249,13 @@ scatter(A,B,100,[55 136 193]/255,'filled','MarkerEdgeColor','w')
 xlim([x(1) x(end)])
 yticks(ylim); xticks(xlim);
 xlabel('CGRP response (σ)')
-ylabel('ΔNovel flavor (σ)')
+ylabel('ΔNovel flavour (σ)')
 title('Water-preferring')
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
 [r,p] = corr(A',B');
-StatsTbl(end+1,:) = table({'4d, middle'},{'CGRP vs. ΔNovel flavor'},{'Pearson correlation'},{'N/A'},{[length(A)]},r,p);
+StatsTbl(end+1,:) = table({'4d, middle'},{'CGRP vs. ΔNovel flavour'},{'Pearson correlation'},{'N/A'},{[length(A)]},r,p);
 
 B = data.stats_retrieval.preference_subtracted(idx)-data.stats.preference_subtracted(idx);
 subplot(2,3,5)
@@ -307,13 +307,13 @@ scatter(A,B,100,'k','filled','MarkerEdgeColor','w')
 xlim([x(1) x(end)])
 yticks(ylim); xticks(xlim);
 xlabel('CGRP response (σ)')
-ylabel('ΔNovel flavor (σ)')
-title('Non-selective')
+ylabel('ΔNovel flavour (σ)')
+title('Nonselective')
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
 [r,p] = corr(A',B');
-StatsTbl(end+1,:) = table({'4d, right'},{'CGRP vs. ΔNovel flavor'},{'Pearson correlation'},{'N/A'},{[length(A)]},r,p);
+StatsTbl(end+1,:) = table({'4d, right'},{'CGRP vs. ΔNovel flavour'},{'Pearson correlation'},{'N/A'},{[length(A)]},r,p);
 
 B = data.stats_retrieval.preference_subtracted(idx)-data.stats.preference_subtracted(idx);
 subplot(2,3,6)
@@ -336,7 +336,7 @@ xlim([x(1) x(end)])
 yticks(ylim); xticks(xlim);
 xlabel('CGRP response (σ)')
 ylabel('ΔSelectivity (σ)')
-title('Non-selective')
+title('Nonselective')
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
@@ -371,13 +371,13 @@ scatter(A,B,100,[229 45 38]/255,'filled','MarkerEdgeColor','w')
 xlim([x(1) x(end)])
 yticks(ylim); xticks(xlim);
 xlabel('CGRP^{CEA} response (σ)')
-ylabel('ΔNovel flavor (σ)')
-title('Flavor-preferring')
+ylabel('ΔNovel flavour (σ)')
+title('Flavour-preferring')
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
 [r,p] = corr(A',B');
-StatsTbl(end+1,:) = table({'4e'},{'CGRP vs. ΔNovel flavor'},{'Pearson correlation'},{'N/A'},{[length(A)]},r,p);
+StatsTbl(end+1,:) = table({'4e'},{'CGRP vs. ΔNovel flavour'},{'Pearson correlation'},{'N/A'},{[length(A)]},r,p);
 
 B = data.stats_retrieval.preference_subtracted(idx)-data.stats.preference_subtracted(idx);
 subplot(1,2,2)
@@ -400,7 +400,7 @@ xlim([x(1) x(end)])
 yticks(ylim); xticks(xlim);
 xlabel('CGRP^{CEA} response (σ)')
 ylabel('ΔSelectivity (σ)')
-title('Flavor-preferring')
+title('Flavour-preferring')
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
@@ -430,7 +430,7 @@ xticks(-5:5:10)
 xlim([-5 10])
 xlabel('Time (s)')
 ylabel('Spiking (σ)')
-title('All Flavor-preferring')
+title('All Flavour-preferring')
 legend([a,b],{'Novel day','Familiar day'})
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
@@ -443,11 +443,11 @@ A = data.stats.response.novel(idx);
 B = data.stats_retrieval.response.novel(idx);
 simpleboxplot(1,A,'k')
 simpleboxplot(2,B,[55 136 193]/255)
-ylabel('Flavor response (σ)'); ylim([-.1 .2]); yticks([-.1 .2])
+ylabel('Flavour response (σ)'); ylim([-.1 .2]); yticks([-.1 .2])
 xticks([1,2])
 xticklabels({'Novel day','Familiar day'})
 xlim([0.25 2.75])
-title('All Flavor-preferring')
+title('All Flavour-preferring')
 set(gca,'FontSize',12,'LineWidth',1,'TickLength',[0.015, 0],'TickDir','out')
 hold off
 
